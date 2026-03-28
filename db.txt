@@ -1,0 +1,40 @@
+-------database structure-------
+CREATE TABLE accounts_details(
+id INT AUTO_INCREMENT PRIMARY KEY,
+acc_name CHAR(30) NOT NULL,
+ph_no VARCHAR(20) NOT NULL,
+email VARCHAR(30),
+money DECIMAL
+);
+
+create table transactions(
+transaction_id int auto_increment primary key,
+id INT ,
+money DECIMAL,
+tran_type varchar(10),
+tran_date date default (current_date),
+tran_time time default (current_time)
+)AUTO_INCREMENT = 1000;
+
+
+-------first entries-------
+INSERT INTO accounts_details (acc_name, ph_no, email, money) VALUES
+('Rahul Sharma', '9876543210', 'rahul.sharma@gmail.com', 15000.50),
+('Anita Das', '9123456780', 'anita.das@yahoo.com', 8200.00),
+('Sourav Sen', '9831122334', 'sourav.sen@outlook.com', 125000.75);
+
+
+
+select transaction_id, a.id, acc_name, t.money from transactions as t inner join accounts_details as a
+on t.id=a.id
+where a.id=1;
+
+INSERT INTO transactions (id, money, tran_type)
+VALUES
+(1, 1000, 'credit'),
+(1, 500, 'debit'),
+(2, 2000, 'credit'),
+(3, 750, 'debit'),
+(2, 1200, 'credit');
+
+select * from transactions;
