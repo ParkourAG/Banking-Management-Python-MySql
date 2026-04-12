@@ -5,8 +5,8 @@ def delete_account():
     db= db_connect
     cursor=db.cursor()
 
-    sql= f"DELETE FROM accounts_details WHERE id='{acc_id}';"
-    cursor.execute(sql)
+    sql_delete= f"DELETE FROM accounts_details WHERE id='{acc_id}';"
+    cursor.execute(sql_delete)
     db.commit()
 
     print("your Account is deleted successfully..")

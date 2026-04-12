@@ -5,9 +5,12 @@ def all_accounts():
     db=db_connect()
     cursor=db.cursor()
 
-    sql=f"SELECT * FROM accounts_details;"
+    sql=f"SELECT * FROM accounts_details WHERE acc_status='active';"
     cursor.execute(sql)
     results=cursor.fetchall()
+    
+    if len(results)==0:
+        print("There is no accounts in Bank database.")
 
     for row in results:
         print(f"\nAcc id  : {row[0]}")
@@ -16,7 +19,7 @@ def all_accounts():
         print(f"Email   : {row[3]}")
         print(f"Money   : {row[4]}")
 
-    print(results)
+    # print(results)
     db.close()
 
 # search_account()
