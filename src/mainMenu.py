@@ -1,15 +1,23 @@
 import sys
-from account_operations import *
+from account_details.create_account import *
+from account_details.debit_cash import *
+from account_details.credit_cash import *
+from account_details.delete_account import *
+from account_details.search_account import *
+from account_details.show_all_accounts import *
+from transactions.transaction_credit_update import *
+from transactions.transaction_debit_update import *
+from transactions.transaction_record_show import *
 
 while True:
     print("---------------Bank Management System---------------")
     print("Enter your choice")
     print("1 : create account")
-    print("2 : view all accounts")
-    print("3 : view your account info")
+    print("2 : view all accounts") 
+    print("3 : view your account info") 
     print("4 : deposite money")
     print("5 : withdraw money")
-    print("6 : view all transations record")
+    print("6 : view all transations record") #
     print("7 : delete account")
     print("8 : exit")
 
@@ -36,6 +44,7 @@ while True:
     elif choice==7:
         delete_account()
     elif choice==8:
+        print("Bye! Bye!")
         sys.exit()
     else:
         print("Invalid choice. Please select the right choice.")

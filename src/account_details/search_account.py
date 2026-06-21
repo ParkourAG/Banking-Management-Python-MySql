@@ -1,8 +1,10 @@
 from db_config import db_connect
 
 def search_account():
-    name=input("Enter your Name: ")
-    phone=input("Enter your Phone No: ")
+    # name=input("Enter your Name: ")
+    # phone=input("Enter your Phone No: ")
+    name="anubrata"
+    phone="789456123"
 
     db=db_connect()
     cursor=db.cursor()
@@ -11,14 +13,15 @@ def search_account():
     cursor.execute(sql)
     results=cursor.fetchall()
 
-    for row in results:
-        print(f"\nAcc id  : {row[0]}")
-        print(f"Name    : {row[1]}")
-        print(f"Phone no: {row[2]}")
-        print(f"Email   : {row[3]}")
-        print(f"Money   : {row[4]}")
+    # for row in results:
+    #     print(f"\nAcc id  : {row[0]}")
+    #     print(f"Name    : {row[1]}")
+    #     print(f"Phone no: {row[2]}")
+    #     print(f"Email   : {row[3]}")
+    #     print(f"Money   : {row[4]}")
 
     print(results)
     db.close()
+    return results
 
 # search_account()
