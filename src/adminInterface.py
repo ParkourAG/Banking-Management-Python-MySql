@@ -3,8 +3,13 @@ from depositeMoney import depositeMoney
 from withdrawMoney import withdrawMoney
 from deleteAccount import deleteAccount
 from viewAllAccounts import viewAllAccounts
+from searchAccount import searchAccount
 
-# root= tk.Tk()
+root= tk.Tk()
+root.title("BMS Bank")
+root.geometry("700x800")
+root.configure(bg="lightblue")
+root.resizable(False,False)
 
 def clear_root(root):
     for widget in root.winfo_children():
@@ -58,6 +63,18 @@ def viewAllAccountPage(root):
         command=lambda:adminInterface(root)
     ).pack(pady=10)
 
+def searchAccountPage(root):
+    clear_root(root)
+    searchAccount(root)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:adminInterface(root)
+    ).pack(pady=10)
+    
 def adminInterface(root):
     clear_root(root)
 
@@ -116,19 +133,20 @@ def adminInterface(root):
     )
     deleteAccount.pack(pady=10)
 
-    # view account info and balance
-    accountInfo= tk.Button(
+    # Search Account
+    searchAccount= tk.Button(
         root,
-        text="View Account Info",
+        text="Search Account",
         font=("Arial", 14, "bold"),
         bg="#0272ea",
         fg="white",
         padx=20,
         pady=10,
         bd=0,
-        cursor="hand2"
+        cursor="hand2",
+        command=lambda:searchAccountPage(root)
     )
-    accountInfo.pack(pady=10)
+    searchAccount.pack(pady=10)
 
     # view all accounts
     transactions= tk.Button(
@@ -160,7 +178,6 @@ def adminInterface(root):
     )
     transactions.pack(pady=10)
 
-    
 
-# adminInterface()
-# root.mainloop()
+adminInterface(root)
+root.mainloop()

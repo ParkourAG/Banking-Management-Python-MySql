@@ -1,11 +1,11 @@
 import tkinter as tk
 from db_config import db_connect
 
-root= tk.Tk()
-root.title("BMS Bank")
-root.geometry("700x800")
-root.configure(bg="lightblue")
-root.resizable(False,False)
+# root= tk.Tk()
+# root.title("BMS Bank")
+# root.geometry("700x800")
+# root.configure(bg="lightblue")
+# root.resizable(False,False)
 
 def delete_account(acc_id):
     # acc_id=input("Enter Account id to delete from bank database: ")
@@ -71,5 +71,5 @@ def deleteAccount(root):
 
 
 
-deleteAccount(root)
-root.mainloop()
+# deleteAccount(root)
+# root.mainloop()

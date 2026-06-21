@@ -1,13 +1,5 @@
 import sys
-from account_details.create_account import *
-from account_details.debit_cash import *
-from account_details.credit_cash import *
-from account_details.delete_account import *
-from account_details.search_account import *
-from account_details.show_all_accounts import *
-from transactions.transaction_credit_update import *
-from transactions.transaction_debit_update import *
-from transactions.transaction_record_show import *
+
 
 while True:
     print("---------------Bank Management System---------------")
