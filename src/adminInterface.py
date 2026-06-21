@@ -1,19 +1,25 @@
 import tkinter as tk
+import sys
 from depositeMoney import depositeMoney
 from withdrawMoney import withdrawMoney
 from deleteAccount import deleteAccount
 from viewAllAccounts import viewAllAccounts
 from searchAccount import searchAccount
 
-root= tk.Tk()
-root.title("BMS Bank")
-root.geometry("700x800")
-root.configure(bg="lightblue")
-root.resizable(False,False)
+
+# root= tk.Tk()
+# root.title("BMS Bank")
+# root.geometry("700x800")
+# root.configure(bg="lightblue")
+# root.resizable(False,False)
 
 def clear_root(root):
     for widget in root.winfo_children():
         widget.destroy()
+
+def renderLanding(root):
+    from landing import landing
+    landing()
 
 def depositeMoneyPage(root):
     clear_root(root)
@@ -178,6 +184,13 @@ def adminInterface(root):
     )
     transactions.pack(pady=10)
 
+    tk.Button(
+        root,
+        text="Back to Login",
+        padx=10,
+        pady=5
+    ).pack()
 
-adminInterface(root)
-root.mainloop()
+
+# adminInterface(root)
+# root.mainloop()

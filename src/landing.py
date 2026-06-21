@@ -130,57 +130,8 @@ def adminLogin():
 
 def userLogin():
     clear_root()
-
-    tk.Label(
-        root,
-        text="Welcome to BMS Banking System",
-        font=("Arial", 20, "bold"),
-        bg="lightblue",
-        fg="white"
-    ).pack(pady=40)
-
-    tk.Label(
-        root,
-        text="User Login",
-        font=("Arial", 20, "bold"),
-        bg="lightblue",
-        fg="white"
-    ).pack(pady=30)
-
-    tk.Label(
-        root,
-        text="Phone no: ",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack()
-
-    username = tk.Entry(root, width=30)
-    username.pack(pady=5)
-
-    tk.Label(
-        root,
-        text="Password",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack()
-
-    password = tk.Entry(root, show="*", width=30)
-    password.pack(pady=5)
-
-    tk.Button(
-        root,
-        text="Login",
-        bg="#0272ea",
-        fg="white",
-        command=userPage
-    ).pack(pady=20)
-
-    tk.Button(
-        root,
-        text="Back",
-        command=landing
-    ).pack()
-
+    userPage()
+    
 def adminPage():
     clear_root()
     adminInterface(root)
