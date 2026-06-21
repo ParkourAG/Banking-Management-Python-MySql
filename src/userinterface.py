@@ -6,6 +6,11 @@ from showAccountInfo import showAccountInfo
 from viewTransactions import viewTransactions
 # root= tk.Tk()
 
+def renderLanding(root):
+    from landing import landing
+    landing(root)
+
+
 def clear_root(root):
     for widget in root.winfo_children():
         widget.destroy()
@@ -60,7 +65,7 @@ def accountInfoPage(root):
 
 def viewTransactionsPage(root):
     clear_root(root)
-    viewTransactions(root)
+    viewTransactions(root, True)
 
     tk.Button(
         root,
@@ -113,20 +118,20 @@ def userInterface(root):
     )
     debitCash.pack(pady=10)
 
-    # delete account
-    deleteAccount= tk.Button(
-        root,
-        text="Delete Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:deleteAccountPage(root)
-    )
-    deleteAccount.pack(pady=10)
+    # # delete account
+    # deleteAccount= tk.Button(
+    #     root,
+    #     text="Delete Account",
+    #     font=("Arial", 14, "bold"),
+    #     bg="#0272ea",
+    #     fg="white",
+    #     padx=20,
+    #     pady=10,
+    #     bd=0,
+    #     cursor="hand2",
+    #     command=lambda:deleteAccountPage(root)
+    # )
+    # deleteAccount.pack(pady=10)
 
     # view account info and balance
     accountInfo= tk.Button(
@@ -158,6 +163,15 @@ def userInterface(root):
         command=lambda:viewTransactionsPage(root)
     )
     transactions.pack(pady=10)
+
+    # Back to Login Button
+    tk.Button(
+        root,
+        text="Back to Login",
+        padx=10,
+        pady=5,
+        command=lambda:renderLanding(root)
+    ).pack()
 
 
 # userInterface(root)
