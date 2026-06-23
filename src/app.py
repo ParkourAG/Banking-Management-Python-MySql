@@ -13,5 +13,4 @@ landing(root)
 
 root.mainloop()
 
-# user- delete - delete account
-# admin- create - last transactions page
+# create admin login 

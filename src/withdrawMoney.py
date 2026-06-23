@@ -13,7 +13,7 @@ def transaction_debit_update(acc_id, ammount):
     db=db_connect()
     cursor=db.cursor()
     sql=f"insert into transactions (id, money, tran_type) \
-          values({acc_id},'{ammount}','debit');"
+          values({acc_id},'{ammount}','withdraw');"
     cursor.execute(sql)
     db.commit()
     

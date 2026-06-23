@@ -1,23 +1,19 @@
--------database structure-------
-CREATE TABLE accounts_details(
-id INT AUTO_INCREMENT PRIMARY KEY,
-acc_name CHAR(30) NOT NULL,
-ph_no VARCHAR(20) NOT NULL,
-email VARCHAR(30),
-money DECIMAL
+/////////// Create Bank Database ///////////
+create database bank_database;
+
+/////////// Account Details Database ///////////
+CREATE TABLE accounts_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    acc_name VARCHAR(30) NOT NULL,
+    ph_no VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    money DECIMAL(10,2) DEFAULT 0.00,
+    create_date DATE NOT NULL DEFAULT (CURRENT_DATE),
+    create_time TIME NOT NULL DEFAULT (CURRENT_TIME),
+    acc_status ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
 );
 
-create table transactions(
-transaction_id int auto_increment primary key,
-id INT ,
-money DECIMAL,
-tran_type varchar(10),
-tran_date date default (current_date),
-tran_time time default (current_time)
-)AUTO_INCREMENT = 1000;
 
-
--------first entries-------
 INSERT INTO accounts_details (acc_name, ph_no, email, money) VALUES
 ('Rahul Sharma', '9876543210', 'rahul.sharma@gmail.com', 15000.50),
 ('Anita Das', '9123456780', 'anita.das@yahoo.com', 8200.00),
@@ -25,16 +21,44 @@ INSERT INTO accounts_details (acc_name, ph_no, email, money) VALUES
 
 
 
-select transaction_id, a.id, acc_name, t.money from transactions as t inner join accounts_details as a
-on t.id=a.id
-where a.id=1;
+
+/////////// Transactions Database ///////////
+CREATE TABLE transactions(
+transaction_id int auto_increment primary key,
+id INT NOT NULL ,
+money DECIMAL(10,2) NOT NULL,
+tran_type ENUM('deposit', 'withdraw') NOT NULL,
+tran_date date default (current_date),
+tran_time time default (current_time)
+)AUTO_INCREMENT = 1000;
+
 
 INSERT INTO transactions (id, money, tran_type)
 VALUES
-(1, 1000, 'credit'),
-(1, 500, 'debit'),
-(2, 2000, 'credit'),
-(3, 750, 'debit'),
-(2, 1200, 'credit');
+(1, 1000, 'deposit'),
+(1, 500, 'withdraw'),
+(2, 2000, 'deposit'),
+(3, 750, 'withdraw'),
+(2, 1200, 'deposit');
 
-select * from transactions;
+
+
+
+/////////// Employees Database ///////////
+CREATE TABLE employees(
+    emp_id INT AUTO_INCREMENT PRIMARY KEY,
+    acc_name VARCHAR(30) NOT NULL,
+    ph_no VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    join_date DATE NOT NULL DEFAULT (CURRENT_DATE),
+    leave_date TIME NOT NULL DEFAULT (CURRENT_TIME),
+    admin_position ENUM('po', 'officer') NOT NULL
+);
+
+INSERT INTO employees (acc_name, ph_no, email, admin_position)
+VALUES
+('Rahul Sharma', '9876543210', 'rahul.sharma@example.com', 'po'),
+('Priya Das', '9123456780', 'priya.das@example.com', 'officer'),
+('Amit Roy', '9988776655', 'amit.roy@example.com', 'po'),
+('Sneha Sen', '9871234567', 'sneha.sen@example.com', 'officer'),
+('Arjun Ghosh', '9765432109', 'arjun.ghosh@example.com', 'po');
