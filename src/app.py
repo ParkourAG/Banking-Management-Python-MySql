@@ -12,5 +12,3 @@ landing(root)
 
 
 root.mainloop()
-
-# create admin login 

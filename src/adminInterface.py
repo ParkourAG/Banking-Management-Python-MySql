@@ -6,6 +6,7 @@ from deleteAccount import deleteAccount
 from viewAllAccounts import viewAllAccounts
 from searchAccount import searchAccount
 from viewTransactions import viewTransactions
+from blockAccount import blockAccount
 
 
 # root= tk.Tk()
@@ -33,7 +34,19 @@ def depositeMoneyPage(root):
         pady=5,
         command=lambda:adminInterface(root)
     ).pack()
-    
+
+def blockAccountPage(root):
+    clear_root(root)
+    blockAccount(root)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:adminInterface(root)
+    ).pack()
+
 def withdrawMoneyPage(root):
     clear_root(root)
     withdrawMoney(root)
@@ -151,6 +164,21 @@ def adminInterface(root):
         command=lambda:deleteAccountPage(root)
     )
     deleteAccount.pack(pady=10)
+
+    # Block Account
+    searchAccount= tk.Button(
+        root,
+        text="Block Account",
+        font=("Arial", 14, "bold"),
+        bg="#0272ea",
+        fg="white",
+        padx=20,
+        pady=10,
+        bd=0,
+        cursor="hand2",
+        command=lambda:blockAccountPage(root)
+    )
+    searchAccount.pack(pady=10)
 
     # Search Account
     searchAccount= tk.Button(
