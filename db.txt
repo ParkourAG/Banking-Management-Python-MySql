@@ -55,10 +55,10 @@ CREATE TABLE employees(
     password VARCHAR(255) NOT NULL
 );
 
-INSERT INTO employees (acc_name, ph_no, email, admin_position)
+INSERT INTO employees (acc_name, ph_no, email, admin_position, password)
 VALUES
-('Rahul Sharma', '9876543210', 'rahul.sharma@example.com', 'po'),
-('Priya Das', '9123456780', 'priya.das@example.com', 'officer'),
-('Amit Roy', '9988776655', 'amit.roy@example.com', 'po'),
-('Sneha Sen', '9871234567', 'sneha.sen@example.com', 'officer'),
-('Arjun Ghosh', '9765432109', 'arjun.ghosh@example.com', 'po');
+('Rahul Sharma', '9876543210', 'rahul.sharma@example.com', 'po', 'rahul1234'),
+('Priya Das', '9123456780', 'priya.das@example.com', 'officer', 'priya1234'),
+('Amit Roy', '9988776655', 'amit.roy@example.com', 'po', 'amit1234'),
+('Sneha Sen', '9871234567', 'sneha.sen@example.com', 'officer', 'sneha1234'),
+('Arjun Ghosh', '9765432109', 'arjun.ghosh@example.com', 'po', 'arjun1234');
