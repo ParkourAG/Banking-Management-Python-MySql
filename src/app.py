@@ -12,3 +12,5 @@ landing(root)
 
 
 root.mainloop()
+
+# in Database make phone number unique

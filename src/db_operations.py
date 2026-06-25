@@ -19,46 +19,37 @@ def isBlocked(db, acc_id):
     sql= f"select acc_status from accounts_details where id={acc_id};"
     cursor.execute(sql)
     result= cursor.fetchone()
-    #  check if the account exists
-    if isExist(db, acc_id):
-        if result[0]=="blocked":
+
+    if result[0]=="blocked":
             return True
-        else:
-            print(f"Acc no:{acc_id} is not block.")
-            return False
     else:
-        print(f"Acc no:{acc_id} dosent exist.")
+        print(f"Acc no:{acc_id} is not block.")
+        return False
 
 def isActive(db, acc_id):
     cursor=db.cursor()
     sql= f"select acc_status from accounts_details where id={acc_id};"
     cursor.execute(sql)
     result= cursor.fetchone()
-    #  check if the account exists
-    if isExist(db, acc_id):
-        if result[0]=="active":
+
+    if result[0]=="active":
             return True
-        else:
-            print(f"Acc no:{acc_id} is not active.")
-            return False
     else:
-        print(f"Acc no:{acc_id} dosent exist.")
+        print(f"Acc no:{acc_id} is not active.")
+        return False
 
 def isDeleted(db, acc_id):
     cursor=db.cursor()
     sql= f"select acc_status from accounts_details where id={acc_id};"
     cursor.execute(sql)
     result= cursor.fetchone()
-    #  check if the account exists
-    if isExist(db, acc_id):
-        if result[0]=="inactive":
+
+    if result[0]=="inactive":
             return True
-        else:
-            print(f"Acc no:{acc_id} is not inactive.")
-            return False
     else:
-        print(f"Acc no:{acc_id} dosent exist.")
+        print(f"Acc no:{acc_id} is inactive.")
+        return False
 
 
-# print(ifBlocked(db, 1))
+# print(isBlocked(db, 2))
 # db.close()
