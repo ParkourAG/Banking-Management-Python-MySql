@@ -3,13 +3,13 @@ from db_config import db_connect
 from db_operations import isBlocked
 from db_operations import isExist
 
-# root= tk.Tk()
-# root.title("BMS Bank")
-# root.geometry("700x800")
-# root.configure(bg="lightblue")
-# root.resizable(False,False)
+root= tk.Tk()
+root.title("BMS Bank")
+root.geometry("700x800")
+root.configure(bg="lightblue")
+root.resizable(False,False)
 
-def block_account(acc_id, root):
+def block_account(messageLabel, acc_id, root):
     try:
         db= db_connect()
 
@@ -26,31 +26,13 @@ def block_account(acc_id, root):
                 db.commit()
 
                 # printing message
-                tk.Label(
-                    root,
-                    text="Account is blocked successfully.",
-                    font=("Arial", 15, "bold"),
-                    bg="lightblue",
-                    fg="black"
-                ).pack(pady=10)
+                messageLabel.config(text="Account is blocked successfully.")
             else:
                 # printing message
-                tk.Label(
-                    root,
-                    text="Account is already blocked.",
-                    font=("Arial", 15, "bold"),
-                    bg="lightblue",
-                    fg="black"
-                ).pack(pady=10)
+                messageLabel.config(text="Account is already blocked.")
         
         else:
-            tk.Label(
-                    root,
-                    text="Account dosent exist. Please type Account no correctly.",
-                    font=("Arial", 15, "bold"),
-                    bg="lightblue",
-                    fg="black"
-                ).pack(pady=10)
+            messageLabel.config(text="Account dosent exist. please type account number correctly.")
             
 
     except Exception as e:
@@ -79,12 +61,23 @@ def blockAccount(root):
     entry_id=tk.Entry(root, width=30)
     entry_id.pack(pady=(5,20))
 
+    # creating message
+    messageLabel=tk.Label(
+                    root,
+                    font=("Arial", 15, "bold"),
+                    bg="lightblue",
+                    fg="black"
+                )
+
     # Button: Block Account
     tk.Button(
         root,
         text="Block Account",
-        command= lambda:block_account(entry_id.get(), root)
+        command= lambda:block_account(messageLabel ,entry_id.get(), root)
     ).pack(pady=10)
 
-# blockAccount(root)
-# root.mainloop()
+    # Message
+    messageLabel.pack(pady=10)
+
+blockAccount(root)
+root.mainloop()
