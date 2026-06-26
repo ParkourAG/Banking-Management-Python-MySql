@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import ttk
+import pandas as pd
 from db_config import db_connect
 
 # root= tk.Tk()
@@ -6,6 +8,8 @@ from db_config import db_connect
 # root.geometry("700x800")
 # root.configure(bg="lightblue")
 # root.resizable(False,False)
+
+table=None
 
 def search_account(acc_id, name, phone, email):
     try:
@@ -15,13 +19,42 @@ def search_account(acc_id, name, phone, email):
         cursor.execute(sql)
         results=cursor.fetchall()
 
-        print(results)
+        # print(results)
         return results
     except Exception as e:
         print(f"Error: {e}")
     finally:
         db.close()
         
+def renderAccountInfo(root, messageLabel, acc_id, name, phone, email):
+        data=search_account(acc_id, name, phone, email)
+
+        # clearing previous table
+        global table
+        if table:
+            table.destroy()
+
+        # print(f"Data: {data}")
+
+        # if result is not empty
+        if len(data)>0:
+            df = pd.DataFrame(data)
+
+            messageLabel.config(text="")
+
+            table = ttk.Treeview(root, columns=list(df.columns), show="headings", height=min(len(df), 10))
+            # Create column headings
+            for col in df.columns:
+                table.heading(col, text=col)
+                table.column(col, width=100)
+            # Insert rows
+            for row in df.itertuples(index=False):
+                table.insert("", tk.END, values=row)
+
+            table.pack()
+        else:
+            messageLabel.config(text="No Account found")
+
 def searchAccount(root):
 
     # heading
@@ -60,7 +93,7 @@ def searchAccount(root):
     # Enter Bank ID
     label_id= tk.Label(
         root,
-        text="Enter Bank ID: ",
+        text="Enter Account no: ",
         bg="lightblue",
         font=("Arial", 12)
     )
@@ -81,13 +114,23 @@ def searchAccount(root):
     entry_email = tk.Entry(root, width=30)
     entry_email.pack(pady=(5,30))
 
+    # creating message
+    messageLabel=tk.Label(
+                    root,
+                    font=("Arial", 15, "bold"),
+                    bg="lightblue",
+                    fg="black"
+                )
+    
     # Button Search account
     btn_createAccount= tk.Button(
         root,
         text="Search Account",
-        command=lambda:search_account(entry_id.get(), entry_username.get(), entry_phone.get(), entry_email.get())
+        command=lambda:renderAccountInfo(root, messageLabel, entry_id.get(), entry_username.get(), entry_phone.get(), entry_email.get())
     )
     btn_createAccount.pack(pady=20)
+    
+    messageLabel.pack(pady=10)
 
 
 # searchAccount(root)

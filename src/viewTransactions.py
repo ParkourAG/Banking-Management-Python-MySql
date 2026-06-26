@@ -9,6 +9,8 @@ from db_config import db_connect
 # root.configure(bg="lightblue")
 # root.resizable(False,False)
 
+table=None
+
 def viewtransactions(acc_id):  
     db=db_connect()
     cursor=db.cursor()
@@ -24,35 +26,35 @@ def viewtransactions(acc_id):
     db.close()
     return results
 
-def renderTransactions(root,result):
+def renderTransactions(root,messageLabel, result):
     # Showing account details
     data=viewtransactions(result)
 
-    if len(data)>1:
+    # clearing previous table
+    global table
+    if table:
+        table.destroy()
+
+    # rendering table
+    if len(data)>0:
         df = pd.DataFrame(data)
         print(df)
+        messageLabel.config(text="")
 
-        tree = ttk.Treeview(root, columns=list(df.columns), show="headings", height=min(len(df), 10))
+        table = ttk.Treeview(root, columns=list(df.columns), show="headings", height=min(len(df), 10))
 
         # Create column headings
         for col in df.columns:
-            tree.heading(col, text=col)
-            tree.column(col, width=100)
+            table.heading(col, text=col)
+            table.column(col, width=100)
 
         # Insert rows
         for row in df.itertuples(index=False):
-            tree.insert("", tk.END, values=row)
+            table.insert("", tk.END, values=row)
 
-        tree.pack()
+        table.pack()
     else:
-        tk.Label(
-            root,
-            text="Wrong Account no or, No transaction Data.",
-            font=("Arial", 15, "bold"),
-            bg="lightblue",
-            fg="black"
-        ).pack(pady=10)
-
+        messageLabel.config(text="Wrong Acc no. or No transactions fro this Account.")
 
 def viewTransactions(root,is_user):
 
@@ -88,14 +90,23 @@ def viewTransactions(root,is_user):
         entry_otp = tk.Entry(root, width=30)
         entry_otp.pack(pady=(5,10))
 
+    # show message
+    messageLabel=tk.Label(
+            root,
+            font=("Arial", 15, "bold"),
+            bg="lightblue",
+            fg="black"
+        )
+
     # Button- Show results
     btn_showResult= tk.Button(
         root,
         text="Show Transaction",
-        command=lambda:renderTransactions(root, entry_accNo.get())
+        command=lambda:renderTransactions(root, messageLabel, entry_accNo.get())
     )
     btn_showResult.pack(pady=20)
 
+    messageLabel.pack(pady=10)
 
-# showAccountInfo(root)
+# viewTransactions(root, True)
 # root.mainloop()

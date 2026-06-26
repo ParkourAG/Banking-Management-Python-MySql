@@ -3,11 +3,11 @@ from db_config import db_connect
 from db_operations import isBlocked
 from db_operations import isExist
 
-root= tk.Tk()
-root.title("BMS Bank")
-root.geometry("700x800")
-root.configure(bg="lightblue")
-root.resizable(False,False)
+# root= tk.Tk()
+# root.title("BMS Bank")
+# root.geometry("700x800")
+# root.configure(bg="lightblue")
+# root.resizable(False,False)
 
 def block_account(messageLabel, acc_id, root):
     try:
@@ -79,5 +79,7 @@ def blockAccount(root):
     # Message
     messageLabel.pack(pady=10)
 
-blockAccount(root)
-root.mainloop()
+# blockAccount(root)
+# root.mainloop()
+
+# 

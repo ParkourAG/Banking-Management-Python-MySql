@@ -160,13 +160,13 @@ def createAccountPage(root):
     clear_root(root)
     createAccount(root)
 
-    # tk.Button(
-    #     root,
-    #     text="Back",
-    #     padx=10,
-    #     pady=5,
-    #     command=lambda:landing(root)
-    # ).pack()
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:landing(root)
+    ).pack()
 
 
 # landing()

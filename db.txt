@@ -8,6 +8,7 @@ CREATE TABLE accounts_details (
     ph_no VARCHAR(15) NOT NULL,
     email VARCHAR(100) NOT NULL,
     money DECIMAL(10,2) DEFAULT 0.00,
+    user_password VARCHAR(30) NOT NULL,
     create_date DATE NOT NULL DEFAULT (CURRENT_DATE),
     create_time TIME NOT NULL DEFAULT (CURRENT_TIME),
     acc_status ENUM('active', 'inactive', 'blocked') NOT NULL DEFAULT 'active'
@@ -49,13 +50,13 @@ CREATE TABLE employees(
     acc_id INT,
     ph_no VARCHAR(15) NOT NULL,
     email VARCHAR(100) NOT NULL,
+    emp_password VARCHAR(30) NOT NULL,
     join_date DATE NOT NULL DEFAULT (CURRENT_DATE),
     leave_date DATE NOT NULL DEFAULT (CURRENT_DATE),
-    admin_position ENUM('po', 'officer') NOT NULL,
-    password VARCHAR(255) NOT NULL
+    admin_position ENUM('po', 'officer') NOT NULL
 );
 
-INSERT INTO employees (acc_name, ph_no, email, admin_position, password)
+INSERT INTO employees (acc_name, ph_no, email, admin_position, emp_password)
 VALUES
 ('Rahul Sharma', '9876543210', 'rahul.sharma@example.com', 'po', 'rahul1234'),
 ('Priya Das', '9123456780', 'priya.das@example.com', 'officer', 'priya1234'),

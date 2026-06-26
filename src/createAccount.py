@@ -1,30 +1,42 @@
 import tkinter as tk
 from db_config import db_connect
+from db_operations import ifExistPh
 
-# root= tk.Tk()
-# root.title("BMS Bank")
-# root.geometry("700x800")
-# root.configure(bg="lightblue")
-# root.resizable(False,False)
+root= tk.Tk()
+root.title("BMS Bank")
+root.geometry("700x800")
+root.configure(bg="lightblue")
+root.resizable(False,False)
 
-def create_account(name, ph, email):
-    try:
-        db=db_connect()
-        cursor=db.cursor()
-        sql1= f"INSERT INTO accounts_details(acc_name, ph_no, email) values('{name}', '{ph}', '{email}');"
+def create_account(messageLabel, name, ph, email, password):
+    if (len(name)>0) and (len(ph)>0) and (len(email)>0)and (len(password)>0):
+        try:
+            db=db_connect()
+            ph=int(ph)
+# hi
+            if ifExistPh(db, ph)==False:
+                cursor=db.cursor()
+                sql1= f"INSERT INTO accounts_details(acc_name, ph_no, email, user_password) values('{name}', '{ph}', '{email}', '{password}');"
 
-        cursor.execute(sql1)
-        db.commit()
+                cursor.execute(sql1)
+                db.commit()
 
-        print("Your is created successfully.\n")
-        print("Check your Account id in Search menu.")
+                # show message
+                messageLabel.config(text="Account created successfully.")
+                
+            else:
+                # show message
+                messageLabel.config(text="Phone no. is already in Use.") 
 
-    except Exception as e:
-        print(f"Error: {e}")
-        db.rollback()
+        except Exception as e:
+            messageLabel.config(text="Enter Credentials Properly.") 
+            print(f"Error: {e}")
+            db.rollback()
 
-    finally:    
-        db.close()
+        finally:    
+            db.close()
+    else:
+        messageLabel.config(text="Enter Credentials Properly.") 
 
 def createAccount(root):
 
@@ -97,16 +109,24 @@ def createAccount(root):
     entry_otp = tk.Entry(root, width=30)
     entry_otp.pack(pady=(5,30))
 
+    # creating message
+    messageLabel=tk.Label(
+                    root,
+                    font=("Arial", 15, "bold"),
+                    bg="lightblue",
+                    fg="black"
+                )
+
     # Button Create account
     btn_createAccount= tk.Button(
         root,
         text="Create Account",
-        command= lambda:create_account(entry_username.get(), entry_phone.get(), entry_email.get())
+        command= lambda:create_account(messageLabel, entry_username.get(), entry_phone.get(), entry_email.get(), entry_password.get())
     )
     btn_createAccount.pack(pady=20)
 
-    # 
+    messageLabel.pack(pady=10)
 
 
-# createAccount(root)
-# root.mainloop()
+createAccount(root)
+root.mainloop()

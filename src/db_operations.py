@@ -9,7 +9,30 @@ def isExist(db, acc_id):
 
     # check if account exists or not
     if result== None:
-        print(f"Acc no:{acc_id} dosent exist.")
+        return False
+    else:
+        return True
+
+def ifExistPh(db, ph):
+    cursor=db.cursor()
+    sql= f"select id from accounts_details where ph_no={ph};"
+    cursor.execute(sql)
+    result= cursor.fetchone()
+
+    # check if account exists or not
+    if result== None:
+        return False
+    else:
+        return True
+     
+def ifAdminExistPh(db, ph):
+    cursor=db.cursor()
+    sql= f"select emp_id from employees where ph_no={ph};"
+    cursor.execute(sql)
+    result= cursor.fetchone()
+
+    # check if account exists or not
+    if result== None:
         return False
     else:
         return True

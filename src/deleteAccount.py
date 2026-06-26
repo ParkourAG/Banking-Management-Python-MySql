@@ -1,5 +1,6 @@
 import tkinter as tk
 from db_config import db_connect
+from db_operations import isExist
 
 # root= tk.Tk()
 # root.title("BMS Bank")
@@ -7,17 +8,24 @@ from db_config import db_connect
 # root.configure(bg="lightblue")
 # root.resizable(False,False)
 
-def delete_account(acc_id):
-    # acc_id=input("Enter Account id to delete from bank database: ")
+def delete_account(messageLabel, acc_id):
     try:
         db= db_connect()
-        cursor=db.cursor()
 
-        sql= f"DELETE FROM accounts_details WHERE id='{acc_id}';"
-        cursor.execute(sql)
-        db.commit()
+        if isExist(db, acc_id):
+            cursor=db.cursor()
+            sql= f"UPDATE accounts_details \
+                            SET acc_status = 'inactive' \
+                            WHERE id = {acc_id};"
+            cursor.execute(sql)
+            db.commit()
 
-        print("your Account is deleted successfully..")
+            # show message
+            messageLabel.config(text=f"Acc no:{acc_id} is deleted successfully.")
+
+        else:
+            messageLabel.config(text=f"Acc no:{acc_id} dosent exist.")
+
     except Exception as e:
         print(f"Error: {e}")
     finally:
@@ -44,32 +52,22 @@ def deleteAccount(root):
     entry_id=tk.Entry(root, width=30)
     entry_id.pack(pady=(5,20))
 
-    # Enter Phone number
-    tk.Label(
-        root,
-        text="Enter Phone no: ",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack()
-    tk.Entry(root, width=30).pack(pady=(5,20))
-
-    # Enter Password
-    tk.Label(
-        root,
-        text="Password",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack()
-    tk.Entry(root, show="*", width=30).pack(pady=(5,20))
+    # creating message
+    messageLabel=tk.Label(
+                    root,
+                    font=("Arial", 15, "bold"),
+                    bg="lightblue",
+                    fg="black"
+                )
 
     # Button: Delete Account
     tk.Button(
         root,
         text="Delete Account",
-        command= lambda:delete_account(entry_id.get())
+        command= lambda:delete_account(messageLabel, entry_id.get())
     ).pack(pady=10)
 
-
+    messageLabel.pack(pady=10)
 
 # deleteAccount(root)
 # root.mainloop()

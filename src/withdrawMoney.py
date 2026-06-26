@@ -1,23 +1,59 @@
 import tkinter as tk
-import pymysql as pms
+from db_config import db_connect
+from db_operations import isExist
 
-def db_connect():
-   return pms.connect(
-      user="root",
-      password="password",
-      host="localhost",
-      database="bank_database"
-   )
+# root= tk.Tk()
+# root.title("BMS Bank")
+# root.geometry("700x800")
+# root.configure(bg="lightblue")
+# root.resizable(False,False)
 
-def transaction_debit_update(acc_id, ammount):
+def transaction_debit_update(messageLabel, acc_id, ammount):
     db=db_connect()
-    cursor=db.cursor()
-    sql=f"insert into transactions (id, money, tran_type) \
-          values({acc_id},'{ammount}','withdraw');"
-    cursor.execute(sql)
-    db.commit()
-    
-    db.close()
+
+    if isExist(db, acc_id):
+        cursor=db.cursor()
+
+        try:
+            sql1=f"select money from accounts_details where id={acc_id}"
+            cursor.execute(sql1)
+            moneyInAcc= cursor.fetchone()
+            moneyInAcc=float(moneyInAcc[0])
+            ammount=float(ammount)
+            # print(moneyInAcc)
+            # print(type(moneyInAcc))
+
+            # check if account has sufficient money
+            if (moneyInAcc-(ammount+1)) > 0:
+                try:
+                    sql3=f"insert into transactions (id, money, tran_type) \
+                        values({acc_id},'{ammount}','withdraw');"
+                    cursor.execute(sql3)
+
+                    sql2=f"UPDATE accounts_details \
+                            SET money = money - {ammount} \
+                            WHERE id = {acc_id};"
+                    cursor.execute(sql2)
+
+                    db.commit()   
+                    messageLabel.config(text="Transaction Successfull. Please visit Again.")
+                except Exception as e:
+                    print(f"Error: {e}")
+                    messageLabel.config(text="Enter Ammount Correctly.")
+                finally:                 
+                    db.close()
+            
+            else:   
+                messageLabel.config(text="Insufficient Money in Account")
+                db.close()
+
+        except Exception as e:
+            print(f"Error: {e}")
+            messageLabel.config(text="Wrong Credentials. Please enter again.")
+
+    else:
+        messageLabel.config(text="Enter Account number Correctly.")
+        db.close()
 
 
 def withdrawMoney(root):
@@ -60,10 +96,22 @@ def withdrawMoney(root):
     ).pack(pady=(5, 0))
     tk.Entry(root, width=30).pack(pady=(5,10))
 
+    # show message
+    messageLabel=tk.Label(
+            root,
+            font=("Arial", 15, "bold"),
+            bg="lightblue",
+            fg="black"
+        )
+
     # button: Withdraw money
     tk.Button(
         root,
         text="Withdraw Money",
-        command=lambda:transaction_debit_update(acc_entry.get(), money.get())
+        command=lambda:transaction_debit_update(messageLabel, acc_entry.get(), money.get())
     ).pack(pady=10)
 
+    messageLabel.pack(pady=10)
+
+# withdrawMoney(root)
+# root.mainloop()

@@ -1,5 +1,6 @@
 import tkinter as tk
 from db_config import db_connect
+from db_operations import ifAdminExistPh
 
 # root= tk.Tk()
 # root.title("BMS Bank")
@@ -7,31 +8,25 @@ from db_config import db_connect
 # root.configure(bg="lightblue")
 # root.resizable(False,False)
 
-def create_admin(emp_name, ph_no, email, admin_position, password, root):
+def create_admin(messageLabel1, messageLabel2 ,emp_name, ph_no, email, admin_position, password, root):
     try:
         db=db_connect()
-        cursor=db.cursor()
-        sql1= f"INSERT INTO employees (emp_name, ph_no, email, admin_position, password) \
-                VALUES ('{emp_name}', '{ph_no}', '{email}', '{admin_position}', '{password}');"
 
-        cursor.execute(sql1)
-        db.commit()
+        if ifAdminExistPh(db, ph_no)==False:
+            cursor=db.cursor()
+            sql1= f"INSERT INTO employees (emp_name, ph_no, email, admin_position, password) \
+                    VALUES ('{emp_name}', '{ph_no}', '{email}', '{admin_position}', '{password}');"
 
-        # printing message
-        tk.Label(
-            root,
-            text="Admin Account is created successfully.",
-            font=("Arial", 15, "bold"),
-            bg="lightblue",
-            fg="black"
-        ).pack(pady=10)
-        tk.Label(
-            root,
-            text="Check your Account id in Search menu.",
-            font=("Arial", 15, "bold"),
-            bg="lightblue",
-            fg="black"
-        ).pack(pady=10)
+            cursor.execute(sql1)
+            db.commit()
+
+            # printing message
+            messageLabel1.config(text="Admin Account created successfully.")
+            messageLabel2.config(text="Please search your Account using Phone no.")
+        else:
+            # printing message
+            messageLabel1.config(text="Phone no is already in use.")
+            messageLabel2.config(text="")
 
     except Exception as e:
         print(f"Error: {e}")
@@ -127,11 +122,25 @@ def createAdminAccount(root):
     btn_createAccount= tk.Button(
         root,
         text="Create Account",
-        command= lambda:create_admin(entry_empName.get(), entry_phone.get(), entry_email.get(), entry_position.get(), entry_password.get(), root)
+        command= lambda:create_admin(messageLabel1, messageLabel2, entry_empName.get(), entry_phone.get(), entry_email.get(), entry_position.get(), entry_password.get(), root)
     )
     btn_createAccount.pack(pady=10)
 
-
+    # Message
+    messageLabel1=tk.Label(
+            root,
+            font=("Arial", 15, "bold"),
+            bg="lightblue",
+            fg="black"
+        )
+    messageLabel1.pack(pady=10)
+    messageLabel2=tk.Label(
+            root,
+            font=("Arial", 15, "bold"),
+            bg="lightblue",
+            fg="black"
+        )
+    messageLabel2.pack(pady=10)
 
 # createAdminAccount(root)
 # root.mainloop()

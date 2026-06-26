@@ -18,7 +18,7 @@ def view_all_accounts():
     cursor.execute(sql)
     results=cursor.fetchall()
 
-    print(results)
+    # print(results)
     db.close()
     return results
 
@@ -36,7 +36,7 @@ def viewAllAccounts(root):
     # making dataframe from the result
     data=view_all_accounts()
     df = pd.DataFrame(data)
-    print(df)
+    # print(df)
 
     tree = ttk.Treeview(root, columns=list(df.columns), show="headings", height=min(len(df), 10))
 
