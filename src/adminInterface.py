@@ -12,6 +12,7 @@ from blockAdminAccount import blockAdmin
 from deleteAdminAccount import deleteAdmin
 from searchAdmin import searchAdmin
 from viewAllAdminAccount import viewAllAdmin
+from viewAlltransactions import viewAllTransactions
 
 
 # root= tk.Tk()
@@ -103,6 +104,18 @@ def deleteAccountPage(root):
 def viewTransactionsPage(root):
     clear_root(root)
     viewTransactions(root, False)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:adminInterface(root)
+    ).pack(pady=10)
+
+def viewAllTransactionsPage(root):
+    clear_root(root)
+    viewAllTransactions(root)
 
     tk.Button(
         root,
@@ -321,10 +334,10 @@ def adminInterface(root):
     transactions.pack(pady=10)
     
 
-    # view all transactions
+    # search transactions
     transactions= tk.Button(
         root,
-        text="View last transactions",
+        text="Search Transactions",
         font=("Arial", 14, "bold"),
         bg="#0272ea",
         fg="white",
@@ -333,6 +346,21 @@ def adminInterface(root):
         bd=0,
         cursor="hand2",
         command=lambda:viewTransactionsPage(root)
+    )
+    transactions.pack(pady=10)
+
+    # view all transactions
+    transactions= tk.Button(
+        root,
+        text="View All transactions",
+        font=("Arial", 14, "bold"),
+        bg="#0272ea",
+        fg="white",
+        padx=20,
+        pady=10,
+        bd=0,
+        cursor="hand2",
+        command=lambda:viewAllTransactionsPage(root)
     )
     transactions.pack(pady=10)
 
