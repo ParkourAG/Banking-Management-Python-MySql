@@ -4,10 +4,14 @@ from depositeMoney import depositeMoney
 from withdrawMoney import withdrawMoney
 from deleteAccount import deleteAccount
 from viewAllAccounts import viewAllAccounts
-from searchAccount import searchAccount
+from searchUserAccount import searchAccount
 from viewTransactions import viewTransactions
 from blockAccount import blockAccount
 from createAdminAccount import createAdminAccount
+from blockAdminAccount import blockAdmin
+from deleteAdminAccount import deleteAdmin
+from searchAdmin import searchAdmin
+from viewAllAdminAccount import viewAllAdmin
 
 
 # root= tk.Tk()
@@ -27,6 +31,30 @@ def renderLanding(root):
 def depositeMoneyPage(root):
     clear_root(root)
     depositeMoney(root)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:adminInterface(root)
+    ).pack()
+
+def blockAdminPage(root):
+    clear_root(root)
+    blockAdmin(root)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:adminInterface(root)
+    ).pack()
+
+def deleteAdminPage(root):
+    clear_root(root)
+    deleteAdmin(root)
 
     tk.Button(
         root,
@@ -119,7 +147,31 @@ def searchAccountPage(root):
         pady=5,
         command=lambda:adminInterface(root)
     ).pack(pady=10)
-    
+
+def searchAdminPage(root):
+    clear_root(root)
+    searchAdmin(root)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:adminInterface(root)
+    ).pack(pady=10)
+
+def viewAllAdminPage(root):
+    clear_root(root)
+    viewAllAdmin(root)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:adminInterface(root)
+    ).pack(pady=10)
+
 def adminInterface(root):
     clear_root(root)
 
@@ -132,36 +184,6 @@ def adminInterface(root):
         fg="white"
     )
     heading.pack(pady=20)
-
-    # # deposite cash
-    # creditCash= tk.Button(
-    #     root,
-    #     text="Credit Cash",
-    #     font=("Arial", 14, "bold"),
-    #     bg="#0272ea",
-    #     fg="white",
-    #     padx=20,
-    #     pady=10,
-    #     bd=0,
-    #     cursor="hand2",
-    #     command=lambda:depositeMoneyPage(root)
-    # )
-    # creditCash.pack(pady=10)
-
-    # # withdraw cash
-    # debitCash= tk.Button(
-    #     root,
-    #     text="Debit Cash",
-    #     font=("Arial", 14, "bold"),
-    #     bg="#0272ea",
-    #     fg="white",
-    #     padx=20,
-    #     pady=10,
-    #     bd=0,
-    #     cursor="hand2",
-    #     command=lambda:withdrawMoneyPage(root)
-    # )
-    # debitCash.pack(pady=10)
 
     # create Admin account
     deleteAccount= tk.Button(
@@ -178,10 +200,40 @@ def adminInterface(root):
     )
     deleteAccount.pack(pady=10)
 
-    # delete account
+    # Delete Admin account
     deleteAccount= tk.Button(
         root,
-        text="Delete Account",
+        text="Delete Admin Account",
+        font=("Arial", 14, "bold"),
+        bg="#0272ea",
+        fg="white",
+        padx=20,
+        pady=10,
+        bd=0,
+        cursor="hand2",
+        command=lambda:deleteAdminPage(root)
+    )
+    deleteAccount.pack(pady=10)
+    
+    # Block Admin account
+    deleteAccount= tk.Button(
+        root,
+        text="Block Admin Account",
+        font=("Arial", 14, "bold"),
+        bg="#0272ea",
+        fg="white",
+        padx=20,
+        pady=10,
+        bd=0,
+        cursor="hand2",
+        command=lambda:blockAdminPage(root)
+    )
+    deleteAccount.pack(pady=10)
+
+    # delete User account
+    deleteAccount= tk.Button(
+        root,
+        text="Delete User Account",
         font=("Arial", 14, "bold"),
         bg="#0272ea",
         fg="white",
@@ -193,10 +245,10 @@ def adminInterface(root):
     )
     deleteAccount.pack(pady=10)
 
-    # Block Account
+    # Block user Account
     searchAccount= tk.Button(
         root,
-        text="Block Account",
+        text="Block user Account",
         font=("Arial", 14, "bold"),
         bg="#0272ea",
         fg="white",
@@ -208,10 +260,10 @@ def adminInterface(root):
     )
     searchAccount.pack(pady=10)
 
-    # Search Account
+    # Search User Account
     searchAccount= tk.Button(
         root,
-        text="Search Account",
+        text="Search User Account",
         font=("Arial", 14, "bold"),
         bg="#0272ea",
         fg="white",
@@ -223,10 +275,40 @@ def adminInterface(root):
     )
     searchAccount.pack(pady=10)
 
-    # view all accounts
+    # Search Admin
+    searchAccount= tk.Button(
+        root,
+        text="Search Admin",
+        font=("Arial", 14, "bold"),
+        bg="#0272ea",
+        fg="white",
+        padx=20,
+        pady=10,
+        bd=0,
+        cursor="hand2",
+        command=lambda:searchAdminPage(root)
+    )
+    searchAccount.pack(pady=10)
+
+    # view all User accounts
     transactions= tk.Button(
         root,
-        text="View all accounts",
+        text="View all User accounts",
+        font=("Arial", 14, "bold"),
+        bg="#0272ea",
+        fg="white",
+        padx=20,
+        pady=10,
+        bd=0,
+        cursor="hand2",
+        command=lambda:viewAllAdminPage(root)
+    )
+    transactions.pack(pady=10)
+    
+    # view all Admin
+    transactions= tk.Button(
+        root,
+        text="View all Admin",
         font=("Arial", 14, "bold"),
         bg="#0272ea",
         fg="white",

@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import pandas as pd
 from db_config import db_connect
+from db_operations import checkUserPassword
 
 # root= tk.Tk()
 # root.title("BMS Bank")
@@ -9,35 +10,49 @@ from db_config import db_connect
 # root.configure(bg="lightblue")
 # root.resizable(False,False)
 
-def accountInfo(acc_id):
+table=None
+
+def accountInfo(acc_id, password):
     db=db_connect()
-    cursor=db.cursor()
+    if checkUserPassword(db, acc_id, password):
+        cursor=db.cursor()
 
-    sql=f"SELECT * FROM accounts_details WHERE id='{acc_id}';"
-    cursor.execute(sql)
-    results=cursor.fetchall()
+        sql=f"SELECT * FROM accounts_details WHERE id='{acc_id}';"
+        cursor.execute(sql)
+        results=cursor.fetchall()
+        db.close()
+        return results
+    else:
+         return None
 
-    print(results)
-    db.close()
-    return results
+def renderAccountInfo(root,messageLabel, acc_id, password):
+        data=accountInfo(acc_id, password)
+        messageLabel.config(text="")
 
-def renderAccountInfo(root, acc_id):
-        data=accountInfo(acc_id)
-        df = pd.DataFrame(data)
-        print(df)
+        # clearing previous table
+        global table
+        if table:
+            table.destroy()
 
-        tree = ttk.Treeview(root, columns=list(df.columns), show="headings", height=min(len(df), 10))
+        # if the password is Correct
+        if data!=None:
+            df = pd.DataFrame(data)
 
-        # Create column headings
-        for col in df.columns:
-            tree.heading(col, text=col)
-            tree.column(col, width=100)
+            table = ttk.Treeview(root, columns=list(df.columns), show="headings", height=min(len(df), 10))
 
-        # Insert rows
-        for row in df.itertuples(index=False):
-            tree.insert("", tk.END, values=row)
+            # Create column headings
+            for col in df.columns:
+                table.heading(col, text=col)
+                table.column(col, width=100)
 
-        tree.pack()
+            # Insert rows
+            for row in df.itertuples(index=False):
+                table.insert("", tk.END, values=row)
+
+            table.pack()
+        else:
+             messageLabel.config(text="Please Enter Account no and Password correctly.")
+             
 
 def showAccountInfo(root):
 
@@ -61,24 +76,34 @@ def showAccountInfo(root):
     entry_accNo = tk.Entry(root, width=30)
     entry_accNo.pack(pady=(5,20))
 
-    #Enter OTP:
-    label_otp= tk.Label(
+    #Enter password:
+    label_password= tk.Label(
         root,
-        text="Enter OTP: ",
+        text="Enter Passwortd : ",
         bg="lightblue",
         font=("Arial", 12)
     )
-    label_otp.pack(pady=(10, 0))
-    entry_otp = tk.Entry(root, width=30)
-    entry_otp.pack(pady=(5,10))
+    label_password.pack(pady=(10, 0))
+    entry_password = tk.Entry(root, width=30)
+    entry_password.pack(pady=(5,10))
+
+    # creating message
+    messageLabel=tk.Label(
+                    root,
+                    font=("Arial", 15, "bold"),
+                    bg="lightblue",
+                    fg="black"
+                )
 
     # Button- Show results
     btn_showResult= tk.Button(
         root,
         text="Show Account Info",
-        command=lambda:renderAccountInfo(root, entry_accNo.get())
+        command=lambda:renderAccountInfo(root, messageLabel, entry_accNo.get(), entry_password.get())
     )
     btn_showResult.pack(pady=20)
+
+    messageLabel.pack(pady=10)
     
 
 # showAccountInfo(root)

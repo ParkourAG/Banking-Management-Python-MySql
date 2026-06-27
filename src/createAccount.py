@@ -2,18 +2,18 @@ import tkinter as tk
 from db_config import db_connect
 from db_operations import ifExistPh
 
-root= tk.Tk()
-root.title("BMS Bank")
-root.geometry("700x800")
-root.configure(bg="lightblue")
-root.resizable(False,False)
+# root= tk.Tk()
+# root.title("BMS Bank")
+# root.geometry("700x800")
+# root.configure(bg="lightblue")
+# root.resizable(False,False)
 
 def create_account(messageLabel, name, ph, email, password):
     if (len(name)>0) and (len(ph)>0) and (len(email)>0)and (len(password)>0):
         try:
             db=db_connect()
             ph=int(ph)
-# hi
+
             if ifExistPh(db, ph)==False:
                 cursor=db.cursor()
                 sql1= f"INSERT INTO accounts_details(acc_name, ph_no, email, user_password) values('{name}', '{ph}', '{email}', '{password}');"
@@ -128,5 +128,5 @@ def createAccount(root):
     messageLabel.pack(pady=10)
 
 
-createAccount(root)
-root.mainloop()
+# createAccount(root)
+# root.mainloop()

@@ -11,11 +11,11 @@ from db_config import db_connect
 
 table=None
 
-def search_account(acc_id, name, phone, email):
+def search_admin_account(admin_id, name, phone, email):
     try:
         db=db_connect()
         cursor=db.cursor()
-        sql=f"SELECT * FROM accounts_details WHERE id='{acc_id}' OR acc_name='{name}' OR ph_no='{phone}' OR email='{email}';"
+        sql=f"SELECT * FROM employees WHERE emp_id='{admin_id}' OR emp_name='{name}' OR ph_no='{phone}' OR email='{email}';"
         cursor.execute(sql)
         results=cursor.fetchall()
 
@@ -26,8 +26,8 @@ def search_account(acc_id, name, phone, email):
     finally:
         db.close()
         
-def renderAccountInfo(root, messageLabel, acc_id, name, phone, email):
-        data=search_account(acc_id, name, phone, email)
+def renderAccountInfo(root, messageLabel, admin_id, name, phone, email):
+        data=search_admin_account(admin_id, name, phone, email)
 
         # clearing previous table
         global table
@@ -55,12 +55,12 @@ def renderAccountInfo(root, messageLabel, acc_id, name, phone, email):
         else:
             messageLabel.config(text="No Account found")
 
-def searchAccount(root):
+def searchAdmin(root):
 
     # heading
     tk.Label(
         root,
-        text="Search Account",
+        text="Search Admin Account",
         font=("Arial", 30, "bold"),
         bg="lightblue",
         fg="white"
@@ -133,5 +133,5 @@ def searchAccount(root):
     messageLabel.pack(pady=10)
 
 
-# searchAccount(root)
+# searchAdminAccount(root)
 # root.mainloop()

@@ -53,7 +53,8 @@ CREATE TABLE employees(
     emp_password VARCHAR(30) NOT NULL,
     join_date DATE NOT NULL DEFAULT (CURRENT_DATE),
     leave_date DATE NOT NULL DEFAULT (CURRENT_DATE),
-    admin_position ENUM('po', 'officer') NOT NULL
+    admin_position ENUM('po', 'officer') NOT NULL,
+    admin_status ENUM('active', 'inactive', 'blocked') NOT NULL DEFAULT 'active'
 );
 
 INSERT INTO employees (acc_name, ph_no, email, admin_position, emp_password)
