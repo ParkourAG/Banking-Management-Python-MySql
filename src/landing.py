@@ -2,7 +2,8 @@ import tkinter as tk
 from userinterface import userInterface
 from adminInterface import adminInterface
 from createAccount import createAccount
-from db_operations import checkAdminPassword
+from officerInterface import officerInterface
+from db_config import db_connect
 
 
 # root = tk.Tk()
@@ -16,9 +17,20 @@ def clear_root(root):
     for widget in root.winfo_children():
         widget.destroy()
 
-# def checkPassword(, admin_id, password, messageLabel):
-
-
+def checkPassword(db, emp_id, password):
+    cursor=db.cursor()
+    sql= f"select emp_password, admin_status, admin_position from employees where emp_id={emp_id};"
+    cursor.execute(sql)
+    result= cursor.fetchone()
+    if result==None:
+        return None
+    resultPassword=str(result[0])
+    admin_status=str(result[1])
+    admin_position=str(result[2])
+    if resultPassword==password:
+         return (True, admin_status, admin_position)
+    else:
+         return (False, admin_status, admin_position)
 
 def landing(root):
     clear_root(root)
@@ -80,6 +92,10 @@ def landing(root):
     )
     createAccount.pack(pady=10)
 
+def officerInterfacePage(root):
+    clear_root(root)
+    officerInterface(root)
+
 def adminLogin(root):
     clear_root(root)
 
@@ -122,14 +138,6 @@ def adminLogin(root):
     admin_password = tk.Entry(root, show="*", width=30)
     admin_password.pack(pady=5)
 
-    tk.Button(
-        root,
-        text="Login",
-        bg="#0272ea",
-        fg="white",
-        command=lambda:adminPage(root)
-    ).pack(pady=20)
-
     # creating message
     messageLabel=tk.Label(
                     root,
@@ -138,10 +146,20 @@ def adminLogin(root):
                     fg="black"
                 )
 
+    # Login Button
+    tk.Button(
+        root,
+        text="Login",
+        bg="#0272ea",
+        fg="white",
+        command=lambda:checkAdminStatus(root, messageLabel, admin_id.get(), admin_password.get())
+    ).pack(pady=20)
+
+    # Back Button
     tk.Button(
         root,
         text="Back",
-        command=lambda:adminPage(root)
+        command=lambda:landing(root)
     ).pack()
 
     messageLabel.pack(pady=10)
@@ -150,16 +168,38 @@ def userLogin(root):
     clear_root(root)
     userPage(root)
     
-def adminPage(root):
+def checkAdminStatus(root, messageLabel, emp_id, password):
+    db= db_connect()
+    cursor=db.cursor()
 
-    # if Wrong password
+    try:
+        isPasswordCorrect= checkPassword(db, emp_id, password)[0]
+        adminStatus= checkPassword(db, emp_id, password)[1]
+        adminPosition= checkPassword(db, emp_id, password)[2]
+        messageLabel.config(text="")
 
+        # if Wrong password
+        if isPasswordCorrect:
+            if adminStatus == "active":
+                if adminPosition== "po":
+                    # If Login is Successfull
+                    clear_root(root)
+                    adminInterface(root)
+                elif adminPosition=="officer":
+                    clear_root(root)
+                    officerInterfacePage(root)
+            else:
+                messageLabel.config(text="Account is either DELETED or BLOCKED. Please Contact to Officer.")
+        else:
+            messageLabel.config(text="Wrong Password! Please Try again")
+    
+    except Exception as e:
+        # print(f"Error: {e}")
+        messageLabel.config(text="Please Enter Admin id Correctly.")
+    finally:
+        db.close()
 
-
-    # If Login is Successfull
-    clear_root(root)
-    adminInterface(root)
-
+    
 def userPage(root):
     clear_root(root)
     userInterface(root)
@@ -179,3 +219,6 @@ def createAccountPage(root):
 
 # landing()
 # root.mainloop()
+
+# db=db_connect()
+# print(checkPassword(db, 15, "rahul1234"))
