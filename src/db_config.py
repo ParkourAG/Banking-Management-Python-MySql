@@ -3,9 +3,9 @@ import pymysql as pms
 def db_connect():
    return pms.connect(
       user="root",
-      password="password",
+      password="",        ######## Enter Password ########
       host="localhost",
-      database="bank_database"
+      database=""         ######## Emter Database Name ########
    )
 
 db_connect()
