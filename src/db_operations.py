@@ -3,7 +3,7 @@ db=db_connect()
 
 def isExist(db, acc_id):
     cursor=db.cursor()
-    sql= f"select emp_id from employees where id={acc_id};"
+    sql= f"select id from accounts_details where id={acc_id};"
     cursor.execute(sql)
     result= cursor.fetchone()
 
@@ -15,7 +15,7 @@ def isExist(db, acc_id):
 
 def isAdminExist(db, admin_id):
     cursor=db.cursor()
-    sql= f"select id from accounts_details where id={admin_id};"
+    sql= f"select emp_id from employees where emp_id={admin_id};"
     cursor.execute(sql)
     result= cursor.fetchone()
 
@@ -35,6 +35,18 @@ def isAdminBlocked(db, admin_id):
             return True
     else:
         print(f"Acc no:{admin_id} is not block.")
+        return False
+
+def isAdminInactive(db, admin_id): 
+    cursor=db.cursor()
+    sql= f"select admin_status from employees where emp_id={admin_id};"
+    cursor.execute(sql)
+    result= cursor.fetchone()
+
+    if result[0]=="inactive":
+            return True
+    else:
+        print(f"Acc no:{admin_id} is active.")
         return False
 
 def ifExistPh(db, ph):
@@ -73,6 +85,18 @@ def isBlocked(db, acc_id):
         print(f"Acc no:{acc_id} is not block.")
         return False
 
+def isInactive(db, acc_id):
+    cursor=db.cursor()
+    sql= f"select acc_status from accounts_details where id={acc_id};"
+    cursor.execute(sql)
+    result= cursor.fetchone()
+
+    if result[0]=="inactive":
+            return True
+    else:
+        print(f"Acc no:{acc_id} is not inactive")
+        return False
+     
 def isActive(db, acc_id):
     cursor=db.cursor()
     sql= f"select acc_status from accounts_details where id={acc_id};"
@@ -123,3 +147,16 @@ def checkAdminPassword(db, admin_id, password):
 
 # print(isBlocked(db, 2))
 # db.close()
+
+
+
+    # cursor=db.cursor()
+    # sql= f"select emp_id from employees where id={acc_id};"
+    # cursor.execute(sql)
+    # result= cursor.fetchone()
+
+    # # check if account exists or not
+    # if result== None:
+    #     return False
+    # else:
+    #     return True

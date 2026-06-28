@@ -13,13 +13,13 @@ from deleteAdminAccount import deleteAdmin
 from searchAdmin import searchAdmin
 from viewAllAdminAccount import viewAllAdmin
 from viewAlltransactions import viewAllTransactions
+from activateAdminAccount import activateAdminId
 
-
-# root= tk.Tk()
-# root.title("BMS Bank")
-# root.geometry("700x800")
-# root.configure(bg="lightblue")
-# root.resizable(False,False)
+root= tk.Tk()
+root.title("BMS Bank")
+root.geometry("700x800")
+root.configure(bg="lightblue")
+root.resizable(True,True)
 
 def clear_root(root):
     for widget in root.winfo_children():
@@ -44,6 +44,18 @@ def depositeMoneyPage(root):
 def blockAdminPage(root):
     clear_root(root)
     blockAdmin(root)
+
+    tk.Button(
+        root,
+        text="Back",
+        padx=10,
+        pady=5,
+        command=lambda:officerInterface(root)
+    ).pack()
+
+def activateAdminPage(root):
+    clear_root(root)
+    activateAdminId(root)
 
     tk.Button(
         root,
@@ -243,6 +255,21 @@ def officerInterface(root):
     )
     deleteAccount.pack(pady=10)
 
+    # Re-activate Admin account
+    deleteAccount= tk.Button(
+        root,
+        text="Re-activate Admin Account",
+        font=("Arial", 14, "bold"),
+        bg="#0272ea",
+        fg="white",
+        padx=20,
+        pady=10,
+        bd=0,
+        cursor="hand2",
+        command=lambda:activateAdminPage(root)
+    )
+    deleteAccount.pack(pady=10)
+
     # delete User account
     deleteAccount= tk.Button(
         root,
@@ -374,5 +401,5 @@ def officerInterface(root):
     ).pack()
 
 
-# officerInterface(root)
-# root.mainloop()
+officerInterface(root)
+root.mainloop()
