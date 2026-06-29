@@ -1,6 +1,9 @@
 /////////// Create Bank Database ///////////
 create database bank_database;
 
+
+
+
 /////////// Account Details Database ///////////
 CREATE TABLE accounts_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,7 +16,6 @@ CREATE TABLE accounts_details (
     create_time TIME NOT NULL DEFAULT (CURRENT_TIME),
     acc_status ENUM('active', 'inactive', 'blocked') NOT NULL DEFAULT 'active'
 );
-
 INSERT INTO accounts_details (acc_name, ph_no, email, money, user_password) VALUES
 ('Rahul Sharma', '9876543210', 'rahul.sharma@gmail.com', 15000.50, 'rahul1234'),
 ('Anita Das', '9123456780', 'anita.das@yahoo.com', 8200.00, 'anita1234'),
@@ -31,7 +33,6 @@ tran_type ENUM('deposit', 'withdraw') NOT NULL,
 tran_date date default (current_date),
 tran_time time default (current_time)
 )AUTO_INCREMENT = 1000;
-
 INSERT INTO transactions (id, money, tran_type)
 VALUES
 (1, 1000, 'deposit'),
@@ -55,7 +56,6 @@ CREATE TABLE employees(
     admin_position ENUM('po', 'officer') NOT NULL,
     admin_status ENUM('active', 'inactive', 'blocked') NOT NULL DEFAULT 'active'
 );
-
 INSERT INTO employees (acc_name, ph_no, email, admin_position, emp_password)
 VALUES
 ('Rahul Sharma', '9876543210', 'rahul.sharma@example.com', 'po', 'rahul1234'),

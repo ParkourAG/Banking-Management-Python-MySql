@@ -1,0 +1,187 @@
+=========================================================
+          BANK MANAGEMENT SYSTEM - USER GUIDE
+=========================================================
+
+Welcome to the Bank Management System!
+
+This application is designed to simplify banking operations
+through an easy-to-use graphical interface. Follow this guide
+to explore the application.
+
+---------------------------------------------------------
+1. Launch the Application
+---------------------------------------------------------
+• Run app.py to start the application.
+• The landing page will appear.
+• Choose the appropriate login option.
+
+---------------------------------------------------------
+2. Login
+---------------------------------------------------------
+There are three types of users:
+
+1. Administrator
+2. Officer
+3. user
+
+Enter your credentials and click Login.
+
+---------------------------------------------------------
+3. Administrator Panel
+---------------------------------------------------------
+Administrators have full control over administrator accounts.
+
+Available features:
+
+• Re-Activate User Account
+• Block User Account
+• Delete User Account
+• Search Useristrator
+• View All User Accounts
+and more...
+
+---------------------------------------------------------
+4. Officer Panel
+---------------------------------------------------------
+Bank officers manage customer accounts and banking operations.
+
+Available features:
+
+• Create Administrator Account
+• Re-Activate Administrator Account
+• Block Administrator Account
+• Delete Administrator Account
+• Search Administrator Account
+• View Administrator Information
+• View All Administrator Accounts
+and more...
+
+Financial Operations
+
+• Deposit Money
+• Withdraw Money
+• View Transaction History etc...
+
+---------------------------------------------------------
+5. Creating a Customer Account
+---------------------------------------------------------
+1. Open "Create Account".
+2. Enter customer information.
+3. Fill all required fields.
+4. Submit the form.
+5. A unique Account ID will be generated.
+
+
+---------------------------------------------------------
+6. Depositing Money
+---------------------------------------------------------
+1. Select "Deposit Money".
+2. Enter the Account ID.
+3. Enter the deposit amount.
+4. Confirm the transaction.
+
+The account balance and transaction history will be updated.
+
+---------------------------------------------------------
+7. Withdrawing Money
+---------------------------------------------------------
+1. Select "Withdraw Money".
+2. Enter the Account ID.
+3. Enter the withdrawal amount.
+4. Enter the Password
+5. Confirm the transaction.
+
+The system checks for sufficient balance before processing.
+
+---------------------------------------------------------
+8. Viewing Transactions
+---------------------------------------------------------
+Open "View Transactions".
+
+You can view:
+
+• Deposits
+• Withdrawals
+• Transaction Amount
+• Transaction Date & Time
+
+---------------------------------------------------------
+10. Searching Accounts
+---------------------------------------------------------
+Use the Search option to quickly locate an account.
+
+Search using:
+
+• Account ID
+• Other supported details
+
+---------------------------------------------------------
+11. Viewing All Accounts
+---------------------------------------------------------
+The "View All Accounts" page displays all registered
+customer accounts and their current status.
+
+---------------------------------------------------------
+12. Blocking an Account
+---------------------------------------------------------
+Blocked accounts cannot perform banking operations.
+
+To block an account:
+
+1. Open Block Account.
+2. Enter the Account ID.
+3. Confirm the action.
+
+---------------------------------------------------------
+13. Deleting an Account
+---------------------------------------------------------
+Deleting an account marks the account as 'inactive' in database.
+And are subject to Re-Activate if needed.
+
+
+---------------------------------------------------------
+14. Activate an Account/Administrator
+---------------------------------------------------------
+Admins can reactivate user accounts.
+Officers can reactivate administratives.
+
+
+---------------------------------------------------------
+15. Database
+---------------------------------------------------------
+The application stores data in a MySQL database.
+
+Stored information includes:
+
+• Customer Details
+• Administrator Details
+• Account Status
+• Balance
+• Transaction History
+
+---------------------------------------------------------
+16. Important Notes
+---------------------------------------------------------
+• Enter valid information only.
+• Deposit and withdrawal amounts must be positive.
+• Ensure sufficient balance before withdrawal.
+• Blocked accounts cannot perform transactions.
+
+---------------------------------------------------------
+17. Project Technologies
+---------------------------------------------------------
+Programming Language : Python
+GUI Framework        : Tkinter
+Database             : MySQL
+Fetching data        : Pandas
+
+---------------------------------------------------------
+Thank You
+---------------------------------------------------------
+Thank you for using the Bank Management System.
+
+This project demonstrates account management, secure role-
+based access, and banking transaction processing through a
+simple desktop application.
+
+=========================================================

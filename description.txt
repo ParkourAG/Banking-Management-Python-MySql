@@ -1,0 +1,106 @@
+Bank Management System(BMS):
+
+# Project Overview:-
+The Bank Management System is a desktop application developed using Python, Tkinter, Pandas and MySQL. It is designed to automate daily banking operations by providing a user-friendly graphical interface for administrators, officers, and customers.
+The application maintains customer account information, transaction history, and administrative records while ensuring secure access through role-based authentication.
+
+# Features:-
+    # Administrator Module
+        Create administrator accounts
+        Re-Activate Blocked or, Deleted administrator accounts
+        Block administrator accounts
+        Delete administrator accounts
+        View all administrator accounts
+        Search administrators
+
+    # Officer Module
+        Login with secure credentials
+        Create customer accounts
+        Re-Activate Blocked or, Deleted customer accounts
+        Block customer accounts
+        Delete customer accounts
+        Search customer accounts
+        View customer information
+        View all customer accounts
+
+    # Customer Account Management
+        Unique account ID generation
+        Store customer details
+        Account activation/deactivation
+        Balance management
+        Secure login credentials
+
+    # Banking Operations
+        Deposit money
+        Withdraw money
+        Automatic balance updates
+        Transaction recording
+        Transaction history viewing
+
+    # Database Features
+        MySQL database integration
+        Secure data storage
+        CRUD operations
+        Transaction management
+        Account status management
+
+
+# Technologies Used:-
+Technology	        Purpose
+Python	        Backend programming
+Tkinter	        Graphical User Interface
+MySQL	        Database management
+MySQL           Connector	Python-MySQL connectivity
+
+
+# Project Structure:-
+
+│
+├── app.py                     # Main application entry point
+├── db_config.py               # Database connection configuration
+├── db_operations.py           # Common database functions
+├── landing.py                 # Login/Home page
+|
+├── adminInterface.py          # Administrator dashboard
+├── officerInterface.py        # Officer dashboard
+├── userInterface.py           # Customer/User dashboard
+│
+├── createAccount.py           # Create customer account
+├── deleteAccount.py           # Delete customer account
+├── activateUserAccount.py     # Re-Activate customer account
+├── blockAdminAccount.py       # Block administrator
+├── activateAdminAccount.py    # Re-Activate administrator
+├── createAdminAccount.py      # Create administrator
+├── deleteAdminAccount.py      # Delete administrator
+│
+├── depositMoney.py            # Deposit operation
+├── withdrawMoney.py           # Withdraw operation
+│
+├── searchUserAccount.py       # Search customer
+├── searchAdmin.py             # Search administrator
+├── showAccountInfo.py         # Display customer details
+├── viewAllAccounts.py         # List all customer accounts
+├── viewAllAdminAccount.py     # List all administrators
+├── viewTransactions.py        # Transaction history
+└── 
+
+
+# Functionalities:-
+    Role-based login system
+    Account creation and management
+    Deposit and withdrawal operations
+    Transaction history maintenance
+    Account activation and blocking
+    Administrator management
+    Customer search functionality
+    Real-time balance updates
+    
+# Security Features
+    Password-protected login
+    Role-based access control
+    Account status verification (Active/Blocked)
+    Database transaction handling
+    Input validation
+
+
+Project Made By: Anubrata Guchhait 
