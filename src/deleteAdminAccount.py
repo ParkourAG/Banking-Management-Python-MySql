@@ -15,7 +15,8 @@ def delete_admin_account(messageLabel, admin_id):
         if isAdminExist(db, admin_id):
             cursor=db.cursor()
             sql= f"UPDATE employees \
-                            SET admin_status = 'inactive' \
+                            SET admin_status = 'inactive', \
+                                leave_date= (CURRENT_DATE) \
                             WHERE emp_id = '{admin_id}';"
             cursor.execute(sql)
             db.commit()

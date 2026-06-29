@@ -142,21 +142,7 @@ def checkAdminPassword(db, admin_id, password):
          return True
     else:
          return False
-    
-# print(checkUserPassword(db, 1, "rahul123"))
+
 
 # print(isBlocked(db, 2))
 # db.close()
-
-
-
-    # cursor=db.cursor()
-    # sql= f"select emp_id from employees where id={acc_id};"
-    # cursor.execute(sql)
-    # result= cursor.fetchone()
-
-    # # check if account exists or not
-    # if result== None:
-    #     return False
-    # else:
-    #     return True

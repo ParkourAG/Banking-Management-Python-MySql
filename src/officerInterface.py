@@ -15,11 +15,11 @@ from viewAllAdminAccount import viewAllAdmin
 from viewAlltransactions import viewAllTransactions
 from activateAdminAccount import activateAdminId
 
-root= tk.Tk()
-root.title("BMS Bank")
-root.geometry("700x800")
-root.configure(bg="lightblue")
-root.resizable(True,True)
+# root= tk.Tk()
+# root.title("BMS Bank")
+# root.geometry("700x800")
+# root.configure(bg="lightblue")
+# root.resizable(True,True)
 
 def clear_root(root):
     for widget in root.winfo_children():
@@ -401,5 +401,5 @@ def officerInterface(root):
     ).pack()
 
 
-officerInterface(root)
-root.mainloop()
+# officerInterface(root)
+# root.mainloop()

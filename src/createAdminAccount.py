@@ -11,18 +11,22 @@ from db_operations import ifAdminExistPh
 def create_admin(messageLabel1, messageLabel2 ,emp_name, ph_no, email, admin_position, password, root):
     try:
         db=db_connect()
+        ph_no= int(ph_no)
 
         if ifAdminExistPh(db, ph_no)==False:
-            cursor=db.cursor()
-            sql1= f"INSERT INTO employees (emp_name, ph_no, email, admin_position, password) \
-                    VALUES ('{emp_name}', '{ph_no}', '{email}', '{admin_position}', '{password}');"
-
-            cursor.execute(sql1)
-            db.commit()
-
-            # printing message
-            messageLabel1.config(text="Admin Account created successfully.")
-            messageLabel2.config(text="Please search your Account using Phone no.")
+            if (len(emp_name)>0) and (len(ph_no)>0) and (len(email)>0)and (len(password)>0) and (admin_position== "officer" or admin_position== "po"):
+                
+                ph_no= int(ph_no)
+                cursor=db.cursor()
+                sql1= f"INSERT INTO employees (emp_name, ph_no, email, admin_position, emp_password) \
+                        VALUES ('{emp_name}', '{ph_no}', '{email}', '{admin_position}', '{password}');"
+                cursor.execute(sql1)
+                db.commit()
+                # printing message
+                messageLabel1.config(text="Admin Account created successfully.")
+                messageLabel2.config(text="Please search your Account using Phone no.")               
+            else:
+                messageLabel1.config(text="Please Enter Credentials Properly.")
         else:
             # printing message
             messageLabel1.config(text="Phone no is already in use.")
@@ -30,8 +34,8 @@ def create_admin(messageLabel1, messageLabel2 ,emp_name, ph_no, email, admin_pos
 
     except Exception as e:
         print(f"Error: {e}")
+        messageLabel1.config(text="Please Enter Credentials Properly.")
         db.rollback()
-
     finally:    
         db.close()
 
