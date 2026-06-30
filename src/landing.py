@@ -6,13 +6,6 @@ from officerInterface import officerInterface
 from db_config import db_connect
 
 
-# root = tk.Tk()
-# root.title("BMS Bank")
-# root.geometry("700x800")
-# root.resizable(False, False)
-# root.configure(bg="lightblue")
-
-
 def clear_root(root):
     for widget in root.winfo_children():
         widget.destroy()
@@ -35,62 +28,98 @@ def checkPassword(db, emp_id, password):
 def landing(root):
     clear_root(root)
 
-    tk.Label(
-        root,
-        text="Welcome to BMS Banking System",
-        font=("Arial", 20, "bold"),
-        bg="lightblue",
-        fg="white"
-    ).pack(pady=40)
+    # Window background
+    root.configure(bg="#edf2f7")
+
+    # ================= HEADER =================
+    header = tk.Frame(root, bg="#0f4c81", height=120)
+    header.pack(fill="x")
 
     tk.Label(
-        root,
-        text="Login as:",
-        font=("Arial", 15, "bold"),
-        bg="lightblue",
+        header,
+        text="BMS BANK",
+        font=("Segoe UI", 28, "bold"),
+        bg="#0f4c81",
         fg="white"
+    ).pack(pady=(20, 0))
+
+    tk.Label(
+        header,
+        text="Secure • Reliable • Trusted Banking",
+        font=("Segoe UI", 11),
+        bg="#0f4c81",
+        fg="#d7e8ff"
     ).pack()
 
-    tk.Button(
+    # ================= MAIN CARD =================
+    card = tk.Frame(
         root,
-        text="Admin",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:adminLogin(root)
-    ).pack(pady=20)
-
-    tk.Button(
-        root,
-        text="User",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:userLogin(root)
-    ).pack()
-
-      # create account
-    createAccount= tk.Button(
-        root,
-        text="Create Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:createAccountPage(root)
+        bg="white",
+        bd=1,
+        relief="solid",
+        padx=40,
+        pady=40
     )
-    createAccount.pack(pady=10)
+    card.pack(pady=60)
+
+    tk.Label(
+        card,
+        text="Welcome",
+        font=("Segoe UI", 22, "bold"),
+        bg="white",
+        fg="#0f4c81"
+    ).pack()
+
+    tk.Label(
+        card,
+        text="Choose how you want to continue",
+        font=("Segoe UI", 11),
+        bg="white",
+        fg="gray40"
+    ).pack(pady=(5, 30))
+
+    # ================= BUTTON STYLE =================
+    btn_style = {
+        "font": ("Segoe UI", 12, "bold"),
+        "bg": "#0f4c81",
+        "fg": "white",
+        "activebackground": "#1565a9",
+        "activeforeground": "white",
+        "width": 24,
+        "height": 2,
+        "bd": 0,
+        "cursor": "hand2"
+    }
+
+    tk.Button(
+        card,
+        text="Admin Login",
+        command=lambda: adminLogin(root),
+        **btn_style
+    ).pack(pady=8)
+
+    tk.Button(
+        card,
+        text="User Login",
+        command=lambda: userLogin(root),
+        **btn_style
+    ).pack(pady=8)
+
+    tk.Button(
+        card,
+        text="Create New Account",
+        command=lambda: createAccountPage(root),
+        **btn_style
+    ).pack(pady=8)
+
+    # ================= FOOTER =================
+    tk.Label(
+        root,
+        text="© 2026 BMS Banking System",
+        bg="#edf2f7",
+        fg="gray50",
+        font=("Segoe UI", 10)
+    ).pack(side="bottom", pady=20)
 
 def officerInterfacePage(root):
     clear_root(root)
@@ -99,70 +128,135 @@ def officerInterfacePage(root):
 def adminLogin(root):
     clear_root(root)
 
-    tk.Label(
-        root,
-        text="Welcome to BMS Banking System",
-        font=("Arial", 20, "bold"),
-        bg="lightblue",
-        fg="white"
-    ).pack(pady=40)
+    root.configure(bg="#edf2f7")
 
-    # Heading 
+    # ================= HEADER =================
+    header = tk.Frame(root, bg="#0f4c81", height=100)
+    header.pack(fill="x")
+
     tk.Label(
+        header,
+        text="BMS BANK",
+        font=("Segoe UI", 26, "bold"),
+        bg="#0f4c81",
+        fg="white"
+    ).pack(pady=(18, 0))
+
+    tk.Label(
+        header,
+        text="Administrator Login",
+        font=("Segoe UI", 11),
+        bg="#0f4c81",
+        fg="#dbeafe"
+    ).pack()
+
+    # ================= LOGIN CARD =================
+    card = tk.Frame(
         root,
+        bg="white",
+        bd=1,
+        relief="solid",
+        padx=40,
+        pady=35
+    )
+    card.pack(pady=50)
+
+    tk.Label(
+        card,
         text="Admin Login",
-        font=("Arial", 20, "bold"),
-        bg="lightblue",
-        fg="white"
-    ).pack(pady=30)
+        font=("Segoe UI", 22, "bold"),
+        bg="white",
+        fg="#0f4c81"
+    ).pack(pady=(0, 25))
 
-    # Enter Admin Id
+    # Admin ID
     tk.Label(
-        root,
-        text="Enter Admin Id",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack()
+        card,
+        text="Employee ID",
+        bg="white",
+        fg="#374151",
+        font=("Segoe UI", 11, "bold"),
+        anchor="w"
+    ).pack(fill="x")
 
-    admin_id = tk.Entry(root, width=30)
-    admin_id.pack(pady=5)
+    admin_id = tk.Entry(
+        card,
+        font=("Segoe UI", 11),
+        width=32
+    )
+    admin_id.pack(pady=(5, 18), ipady=5)
 
-    # Enter Admin Password
+    # Password
     tk.Label(
-        root,
-        text="Enter Password",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack()
+        card,
+        text="Password",
+        bg="white",
+        fg="#374151",
+        font=("Segoe UI", 11, "bold"),
+        anchor="w"
+    ).pack(fill="x")
 
-    admin_password = tk.Entry(root, show="*", width=30)
-    admin_password.pack(pady=5)
+    admin_password = tk.Entry(
+        card,
+        show="*",
+        font=("Segoe UI", 11),
+        width=32
+    )
+    admin_password.pack(pady=(5, 20), ipady=5)
 
-    # creating message
-    messageLabel=tk.Label(
-                    root,
-                    font=("Arial", 15, "bold"),
-                    bg="lightblue",
-                    fg="black"
-                )
+    # Message Label
+    messageLabel = tk.Label(
+        card,
+        text="",
+        bg="white",
+        fg="red",
+        font=("Segoe UI", 10, "bold")
+    )
+    messageLabel.pack(pady=(0, 15))
 
     # Login Button
     tk.Button(
-        root,
+        card,
         text="Login",
-        bg="#0272ea",
+        font=("Segoe UI", 11, "bold"),
+        bg="#0f4c81",
         fg="white",
-        command=lambda:checkAdminStatus(root, messageLabel, admin_id.get(), admin_password.get())
-    ).pack(pady=20)
+        activebackground="#1565a9",
+        activeforeground="white",
+        bd=0,
+        width=22,
+        height=2,
+        cursor="hand2",
+        command=lambda: checkAdminStatus(
+            root,
+            messageLabel,
+            admin_id.get(),
+            admin_password.get()
+        )
+    ).pack(pady=(0, 10))
 
     # Back Button
     tk.Button(
-        root,
-        text="Back",
-        command=lambda:landing(root)
+        card,
+        text="← Back",
+        font=("Segoe UI", 10),
+        bg="#e5e7eb",
+        fg="#111827",
+        bd=0,
+        width=22,
+        height=2,
+        cursor="hand2",
+        command=lambda: landing(root)
     ).pack()
 
-    messageLabel.pack(pady=10)
+    # Footer
+    tk.Label(
+        root,
+        text="Authorized Personnel Only",
+        bg="#edf2f7",
+        fg="gray45",
+        font=("Segoe UI", 10)
+    ).pack(side="bottom", pady=20)
 
 def userLogin(root):
     clear_root(root)
@@ -198,8 +292,7 @@ def checkAdminStatus(root, messageLabel, emp_id, password):
         messageLabel.config(text="Please Enter Admin id Correctly.")
     finally:
         db.close()
-
-    
+   
 def userPage(root):
     clear_root(root)
     userInterface(root)
@@ -208,17 +301,16 @@ def createAccountPage(root):
     clear_root(root)
     createAccount(root)
 
+    # Back Button
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:landing(root)
+        text="← Back",
+        font=("Segoe UI", 10),
+        bg="#e5e7eb",
+        fg="#111827",
+        bd=0,
+        width=22,
+        height=2,
+        cursor="hand2",
+        command=lambda: landing(root)
     ).pack()
-
-
-# landing()
-# root.mainloop()
-
-# db=db_connect()
-# print(checkPassword(db, 15, "rahul1234"))

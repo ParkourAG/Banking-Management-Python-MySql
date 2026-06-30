@@ -6,65 +6,83 @@ from db_config import db_connect
 
 table=None
 
-def viewtransactions(acc_id):  
+def viewtransactions(acc_id, password):  
     db=db_connect()
     cursor=db.cursor()
+    try:
 
-    sql=f"select transaction_id, a.id, acc_name, t.money, tran_type, tran_date, tran_time \
-        from transactions as t inner join accounts_details as a \
-        on t.id=a.id \
-        where a.id='{acc_id}';"
-    cursor.execute(sql)
-    results=cursor.fetchall()
+        sqlPassword= f"select user_password from accounts_details \
+                       where id='{acc_id}'"
+        cursor.execute(sqlPassword)
+        getPassword=cursor.fetchone()
+        getPassword= getPassword[0]
+        # print(f"getPassword:{getPassword}, password:{password}")
 
-    print(results)
-    db.close()
-    return results
+        # if password is correct:
+        if password==getPassword:
+            sql=f"select transaction_id, a.id, acc_name, t.money, tran_type, tran_date, tran_time \
+                from transactions as t inner join accounts_details as a \
+                on t.id=a.id \
+                where a.id='{acc_id}';"
+            cursor.execute(sql)
+            results=cursor.fetchall()
 
-def renderTransactions(root,messageLabel, result):
+            # print(results)
+            db.close()
+            return results
+        else:
+            return None
+        
+    except Exception as e:
+        print(f"viewtransactions Error: {e}")
+
+def renderTransactions(root,messageLabel, acc_id, password):
     # Showing account details
-    data=viewtransactions(result)
+    data=viewtransactions(acc_id, password)
 
     # clearing previous table
     global table
     if table:
         table.destroy()
 
-    # rendering table
-    if len(data)>0:
-        columns = [
-                    "Transaction ID",
-                    "Account Number",
-                    "Account Holder",
-                    "Amount (₹)",
-                    "Transaction Type",
-                    "Date",
-                    "Time"
-                   ]
+    if data!=None:
+        # rendering table
+        if len(data)>0:
+            columns = [
+                        "Transaction ID",
+                        "Account Number",
+                        "Account Holder",
+                        "Amount (₹)",
+                        "Transaction Type",
+                        "Date",
+                        "Time"
+                        ]
 
-        df = pd.DataFrame(data, columns=columns)
+            df = pd.DataFrame(data, columns=columns)
 
-        messageLabel.config(text="")
+            messageLabel.config(text="")
 
-        table = ttk.Treeview(
-            root,
-            columns=list(df.columns),
-            show="headings",
-            height=min(len(df), 10)
-        )
+            table = ttk.Treeview(
+                root,
+                columns=list(df.columns),
+                show="headings",
+                height=min(len(df), 10)
+            )
 
-        # Create headings
-        for col in df.columns:
-            table.heading(col, text=col)
-            table.column(col, width=150, anchor="center")
+            # Create headings
+            for col in df.columns:
+                table.heading(col, text=col)
+                table.column(col, width=150, anchor="center")
 
-        # Insert rows
-        for row in df.itertuples(index=False):
-            table.insert("", tk.END, values=row)
+            # Insert rows
+            for row in df.itertuples(index=False):
+                table.insert("", tk.END, values=row)
 
-        table.pack()
+            table.pack()
+        else:
+            messageLabel.config(text="Wrong Acc no. or No transactions fro this Account.")
     else:
-        messageLabel.config(text="Wrong Acc no. or No transactions fro this Account.")
+        messageLabel.config(text="Incorrect password.")
 
 def viewTransactions(root, is_user):
     root.configure(bg="#edf2f7")
@@ -125,23 +143,23 @@ def viewTransactions(root, is_user):
     )
     entry_accNo.pack(ipady=5, pady=(5, 15))
 
-    # -------- OTP (Only for User) --------
+    # -------- Password --------
     if is_user == True:
         tk.Label(
             card,
-            text="OTP",
+            text="Password",
             font=("Segoe UI", 11, "bold"),
             bg="white",
             fg="#374151",
             anchor="w"
         ).pack(fill="x")
 
-        entry_otp = tk.Entry(
+        entry_password = tk.Entry(
             card,
             width=35,
             font=("Segoe UI", 11)
         )
-        entry_otp.pack(ipady=5, pady=(5, 20))
+        entry_password.pack(ipady=5, pady=(5, 20))
 
         # check for password
 
@@ -172,7 +190,8 @@ def viewTransactions(root, is_user):
         command=lambda: renderTransactions(
             root,
             messageLabel,
-            entry_accNo.get()
+            entry_accNo.get(),
+            entry_password.get()
         )
     ).pack()
 

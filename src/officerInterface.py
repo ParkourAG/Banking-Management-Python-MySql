@@ -15,11 +15,7 @@ from viewAllAdminAccount import viewAllAdmin
 from viewAlltransactions import viewAllTransactions
 from activateAdminAccount import activateAdminId
 
-# root= tk.Tk()
-# root.title("BMS Bank")
-# root.geometry("700x800")
-# root.configure(bg="lightblue")
-# root.resizable(True,True)
+
 
 def clear_root(root):
     for widget in root.winfo_children():
@@ -33,373 +29,450 @@ def depositeMoneyPage(root):
     clear_root(root)
     depositeMoney(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def blockAdminPage(root):
     clear_root(root)
     blockAdmin(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def activateAdminPage(root):
     clear_root(root)
     activateAdminId(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def deleteAdminPage(root):
     clear_root(root)
     deleteAdmin(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def blockAccountPage(root):
     clear_root(root)
     blockAccount(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def withdrawMoneyPage(root):
     clear_root(root)
     withdrawMoney(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def deleteAccountPage(root):
     clear_root(root)
     deleteAccount(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def viewTransactionsPage(root):
     clear_root(root)
     viewTransactions(root, False)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def viewAllTransactionsPage(root):
     clear_root(root)
     viewAllTransactions(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def viewAllAccountPage(root):
     clear_root(root)
     viewAllAccounts(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def createAdminAccountPage(root):
     clear_root(root)
     createAdminAccount(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=5)
 
 def searchAccountPage(root):
     clear_root(root)
     searchAccount(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def searchAdminPage(root):
     clear_root(root)
     searchAdmin(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def viewAllAdminPage(root):
     clear_root(root)
     viewAllAdmin(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:officerInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
 
 def officerInterface(root):
     clear_root(root)
+    root.configure(bg="#edf2f7")
 
-    # label: Choose your action:
-    heading= tk.Label(
-        root,
-        text="Choose your action:",
-        font=("Arial", 20, "bold"),
-        bg="lightblue",
+    # ================= HEADER =================
+    header = tk.Frame(root, bg="#0f4c81", height=100)
+    header.pack(fill="x")
+
+    tk.Label(
+        header,
+        text="BMS BANK",
+        font=("Segoe UI", 26, "bold"),
+        bg="#0f4c81",
         fg="white"
-    )
-    heading.pack(pady=20)
+    ).pack(pady=(18, 0))
 
-    # create Admin account
-    deleteAccount= tk.Button(
-        root,
-        text="Create Admin Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:createAdminAccountPage(root)
-    )
-    deleteAccount.pack(pady=10)
-
-    # Delete Admin account
-    deleteAccount= tk.Button(
-        root,
-        text="Delete Admin Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:deleteAdminPage(root)
-    )
-    deleteAccount.pack(pady=10)
-    
-    # Block Admin account
-    deleteAccount= tk.Button(
-        root,
-        text="Block Admin Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:blockAdminPage(root)
-    )
-    deleteAccount.pack(pady=10)
-
-    # Re-activate Admin account
-    deleteAccount= tk.Button(
-        root,
-        text="Re-activate Admin Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:activateAdminPage(root)
-    )
-    deleteAccount.pack(pady=10)
-
-    # delete User account
-    deleteAccount= tk.Button(
-        root,
-        text="Delete User Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:deleteAccountPage(root)
-    )
-    deleteAccount.pack(pady=10)
-
-    # Block user Account
-    searchAccount= tk.Button(
-        root,
-        text="Block user Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:blockAccountPage(root)
-    )
-    searchAccount.pack(pady=10)
-
-    # Search User Account
-    searchAccount= tk.Button(
-        root,
-        text="Search User Account",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:searchAccountPage(root)
-    )
-    searchAccount.pack(pady=10)
-
-    # Search Admin
-    searchAccount= tk.Button(
-        root,
-        text="Search Admin",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:searchAdminPage(root)
-    )
-    searchAccount.pack(pady=10)
-
-    # view all User accounts
-    transactions= tk.Button(
-        root,
-        text="View all User accounts",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:viewAllAdminPage(root)
-    )
-    transactions.pack(pady=10)
-    
-    # view all Admin
-    transactions= tk.Button(
-        root,
-        text="View all Admin",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:viewAllAccountPage(root)
-    )
-    transactions.pack(pady=10)
-    
-
-    # search transactions
-    transactions= tk.Button(
-        root,
-        text="Search Transactions",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:viewTransactionsPage(root)
-    )
-    transactions.pack(pady=10)
-
-    # view all transactions
-    transactions= tk.Button(
-        root,
-        text="View All transactions",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:viewAllTransactionsPage(root)
-    )
-    transactions.pack(pady=10)
-
-    # Back to Login Button
-    tk.Button(
-        root,
-        text="Back to Login",
-        padx=10,
-        pady=5,
-        command=lambda:renderLanding(root)
+    tk.Label(
+        header,
+        text="Officer Dashboard",
+        font=("Segoe UI", 11),
+        bg="#0f4c81",
+        fg="#dbeafe"
     ).pack()
 
+    # ================= TITLE =================
+    tk.Label(
+        root,
+        text="Choose an Action",
+        font=("Segoe UI", 20, "bold"),
+        bg="#edf2f7",
+        fg="#0f4c81"
+    ).pack(pady=(30, 20))
 
-# officerInterface(root)
-# root.mainloop()
+    # ================= GRID =================
+    grid = tk.Frame(root, bg="#edf2f7")
+    grid.pack()
+
+    btn_style = {
+        "font": ("Segoe UI", 11, "bold"),
+        "bg": "#ffffff",
+        "fg": "#0f4c81",
+        "activebackground": "#e8f1ff",
+        "activeforeground": "#0f4c81",
+        "width": 20,
+        "height": 5,
+        "bd": 1,
+        "relief": "solid",
+        "cursor": "hand2"
+    }
+
+    # ---------------- Row 1 ----------------
+
+    tk.Button(
+        grid,
+        text="➕\nCreate Admin",
+        command=lambda: createAdminAccountPage(root),
+        **btn_style
+    ).grid(row=0, column=0, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="🗑\nDelete Admin",
+        command=lambda: deleteAdminPage(root),
+        **btn_style
+    ).grid(row=0, column=1, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="🚫\nBlock Admin",
+        command=lambda: blockAdminPage(root),
+        **btn_style
+    ).grid(row=0, column=2, padx=15, pady=15)
+
+    # ---------------- Row 2 ----------------
+
+    tk.Button(
+        grid,
+        text="✅\nReactivate Admin",
+        command=lambda: activateAdminPage(root),
+        **btn_style
+    ).grid(row=1, column=0, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="🗑\nDelete User",
+        command=lambda: deleteAccountPage(root),
+        **btn_style
+    ).grid(row=1, column=1, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="🚫\nBlock User",
+        command=lambda: blockAccountPage(root),
+        **btn_style
+    ).grid(row=1, column=2, padx=15, pady=15)
+
+    # ---------------- Row 3 ----------------
+
+    tk.Button(
+        grid,
+        text="🔍\nSearch User",
+        command=lambda: searchAccountPage(root),
+        **btn_style
+    ).grid(row=2, column=0, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="👤\nSearch Admin",
+        command=lambda: searchAdminPage(root),
+        **btn_style
+    ).grid(row=2, column=1, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="🛡\nView Admins",
+        command=lambda: viewAllAdminPage(root),
+        **btn_style
+    ).grid(row=2, column=2, padx=15, pady=15)
+
+    # ---------------- Row 4 ----------------
+
+    tk.Button(
+        grid,
+        text="👥\nView Users",
+        command=lambda: viewAllAccountPage(root),
+        **btn_style
+    ).grid(row=3, column=0, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="📄\nTransactions",
+        command=lambda: viewTransactionsPage(root),
+        **btn_style
+    ).grid(row=3, column=1, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="📊\nAll Transactions",
+        command=lambda: viewAllTransactionsPage(root),
+        **btn_style
+    ).grid(row=3, column=2, padx=15, pady=15)
+
+    # Equal column sizes
+    grid.grid_columnconfigure(0, weight=1)
+    grid.grid_columnconfigure(1, weight=1)
+    grid.grid_columnconfigure(2, weight=1)
+
+    # ================= BACK BUTTON =================
+    tk.Button(
+        root,
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: officerInterface(root)
+    ).pack(pady=30)
+
+    # ================= FOOTER =================
+    tk.Label(
+        root,
+        text="Officer Access • BMS Banking System",
+        bg="#edf2f7",
+        fg="gray45",
+        font=("Segoe UI", 10)
+    ).pack(side="bottom", pady=15)

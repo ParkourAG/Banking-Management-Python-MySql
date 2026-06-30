@@ -1,0 +1,19 @@
+1.
+Make Whole The SQL Database from 'db.txt'.
+
+2.
+Database: MySQL
+
+3.
+install these python libraries
+    a. pandas
+    b. tkinter
+    c. pymysql
+    d. sys (Built-in)
+
+4.
+To connect the app with MySQL Database:
+    Enter your MySQL Password In: '/src/db_config.py'
+
+5.
+then , Run the 'app.py' from '/src' folder.

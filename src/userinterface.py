@@ -3,13 +3,12 @@ from depositeMoney import depositeMoney
 from withdrawMoney import withdrawMoney
 from deleteAccount import deleteAccount
 from showAccountInfo import showAccountInfo
-from viewTransactions import viewTransactions
-# root= tk.Tk()
+from viewTransactionsUser import viewTransactions
+
 
 def renderLanding(root):
     from landing import landing
     landing(root)
-
 
 def clear_root(root):
     for widget in root.winfo_children():
@@ -19,160 +18,203 @@ def depositeMoneyPage(root):
     clear_root(root)
     depositeMoney(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:userInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: userInterface(root)
+    ).pack(pady=30)
 
 def withdrawMoneyPage(root):
     clear_root(root)
     withdrawMoney(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:userInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: userInterface(root)
+    ).pack(pady=30)
 
 def deleteAccountPage(root):
     clear_root(root)
     deleteAccount(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:userInterface(root)
-    ).pack()
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: userInterface(root)
+    ).pack(pady=30)
 
 def accountInfoPage(root):
     clear_root(root)
     showAccountInfo(root)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:userInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: userInterface(root)
+    ).pack(pady=30)
 
 def viewTransactionsPage(root):
     clear_root(root)
     viewTransactions(root, True)
 
+    # ================= BACK BUTTON =================
     tk.Button(
         root,
-        text="Back",
-        padx=10,
-        pady=5,
-        command=lambda:userInterface(root)
-    ).pack(pady=10)
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: userInterface(root)
+    ).pack(pady=30)
 
 def userInterface(root):
     clear_root(root)
+    root.configure(bg="#edf2f7")
 
-    # label: Choose your action:
-    heading= tk.Label(
-        root,
-        text="Choose your action:",
-        font=("Arial", 20, "bold"),
-        bg="lightblue",
+    # ================= HEADER =================
+    header = tk.Frame(root, bg="#0f4c81", height=100)
+    header.pack(fill="x")
+
+    tk.Label(
+        header,
+        text="BMS BANK",
+        font=("Segoe UI", 26, "bold"),
+        bg="#0f4c81",
         fg="white"
-    )
-    heading.pack(pady=30)
+    ).pack(pady=(18, 0))
 
-    # deposite cash
-    creditCash= tk.Button(
-        root,
-        text="Credit Money",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:depositeMoneyPage(root)
-    )
-    creditCash.pack(pady=10)
-
-    # withdraw cash
-    debitCash= tk.Button(
-        root,
-        text="Debit Money",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:withdrawMoneyPage(root)
-    )
-    debitCash.pack(pady=10)
-
-    # # delete account
-    # deleteAccount= tk.Button(
-    #     root,
-    #     text="Delete Account",
-    #     font=("Arial", 14, "bold"),
-    #     bg="#0272ea",
-    #     fg="white",
-    #     padx=20,
-    #     pady=10,
-    #     bd=0,
-    #     cursor="hand2",
-    #     command=lambda:deleteAccountPage(root)
-    # )
-    # deleteAccount.pack(pady=10)
-
-    # view account info and balance
-    accountInfo= tk.Button(
-        root,
-        text="View Account Info",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:accountInfoPage(root)
-    )
-    accountInfo.pack(pady=10)
-
-
-    # view all transactions
-    transactions= tk.Button(
-        root,
-        text="View last transactions",
-        font=("Arial", 14, "bold"),
-        bg="#0272ea",
-        fg="white",
-        padx=20,
-        pady=10,
-        bd=0,
-        cursor="hand2",
-        command=lambda:viewTransactionsPage(root)
-    )
-    transactions.pack(pady=10)
-
-    # Back to Login Button
-    tk.Button(
-        root,
-        text="Back to Login",
-        padx=10,
-        pady=5,
-        command=lambda:renderLanding(root)
+    tk.Label(
+        header,
+        text="Customer Dashboard",
+        font=("Segoe UI", 11),
+        bg="#0f4c81",
+        fg="#dbeafe"
     ).pack()
 
+    # ================= TITLE =================
+    tk.Label(
+        root,
+        text="Choose an Action",
+        font=("Segoe UI", 20, "bold"),
+        bg="#edf2f7",
+        fg="#0f4c81"
+    ).pack(pady=(30, 20))
 
-# userInterface(root)
-# root.mainloop()
+    # ================= GRID =================
+    grid = tk.Frame(root, bg="#edf2f7")
+    grid.pack()
+
+    btn_style = {
+        "font": ("Segoe UI", 11, "bold"),
+        "bg": "#ffffff",
+        "fg": "#0f4c81",
+        "activebackground": "#e8f1ff",
+        "activeforeground": "#0f4c81",
+        "width": 22,
+        "height": 5,
+        "bd": 1,
+        "relief": "solid",
+        "cursor": "hand2"
+    }
+
+    # -------- Row 1 --------
+    tk.Button(
+        grid,
+        text="💰\nDeposit Money",
+        command=lambda: depositeMoneyPage(root),
+        **btn_style
+    ).grid(row=0, column=0, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="💸\nWithdraw Money",
+        command=lambda: withdrawMoneyPage(root),
+        **btn_style
+    ).grid(row=0, column=1, padx=15, pady=15)
+
+    # -------- Row 2 --------
+    tk.Button(
+        grid,
+        text="👤\nAccount Details",
+        command=lambda: accountInfoPage(root),
+        **btn_style
+    ).grid(row=1, column=0, padx=15, pady=15)
+
+    tk.Button(
+        grid,
+        text="📄\nTransactions",
+        command=lambda: viewTransactionsPage(root),
+        **btn_style
+    ).grid(row=1, column=1, padx=15, pady=15)
+
+    # ================= BACK BUTTON =================
+    tk.Button(
+        root,
+        text="← Back",
+        font=("Segoe UI", 11, "bold"),
+        bg="#6b7280",
+        fg="white",
+        activebackground="#4b5563",
+        activeforeground="white",
+        bd=0,
+        width=25,
+        height=2,
+        cursor="hand2",
+        command=lambda: renderLanding(root)
+    ).pack(pady=30)
+
+    # ================= FOOTER =================
+    tk.Label(
+        root,
+        text="Customer Portal • BMS Banking System",
+        bg="#edf2f7",
+        fg="gray45",
+        font=("Segoe UI", 10)
+    ).pack(side="bottom", pady=20)

@@ -46,11 +46,11 @@ The application maintains customer account information, transaction history, and
 
 
 # Technologies Used:-
-Technology	        Purpose
-Python	        Backend programming
-Tkinter	        Graphical User Interface
-MySQL	        Database management
-MySQL           Connector	Python-MySQL connectivity
+  Technology	            Purpose
+Python	            Backend programming
+Tkinter	            Graphical User Interface
+MySQL	            Database management
+MySQL-Connector	    Python-MySQL connectivity
 
 
 # Project Structure:-

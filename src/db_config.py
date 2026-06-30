@@ -5,7 +5,5 @@ def db_connect():
       user="root",
       password="",
       host="localhost",
-      database=""
+      database="bank_database"
    )
-
-db_connect()

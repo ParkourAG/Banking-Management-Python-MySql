@@ -2,11 +2,6 @@ import tkinter as tk
 from db_config import db_connect
 from db_operations import isAdminExist
 
-# root= tk.Tk()
-# root.title("BMS Bank")
-# root.geometry("700x800")
-# root.configure(bg="lightblue")
-# root.resizable(False,False)
 
 def delete_admin_account(messageLabel, admin_id):
     try:
@@ -34,42 +29,98 @@ def delete_admin_account(messageLabel, admin_id):
         db.close()
 
 def deleteAdmin(root):
+    root.configure(bg="#edf2f7")
 
-    # heading
+    # ================= HEADER =================
+    header = tk.Frame(root, bg="#0f4c81", height=100)
+    header.pack(fill="x")
+
     tk.Label(
-        root,
-        text="Delete Admin Account",
-        font=("Arial", 30, "bold"),
-        bg="lightblue",
+        header,
+        text="BMS BANK",
+        font=("Segoe UI", 26, "bold"),
+        bg="#0f4c81",
         fg="white"
-    ).pack(pady=40)
+    ).pack(pady=(18, 0))
 
-    # Enter Account Id
+    tk.Label(
+        header,
+        text="Delete Administrator Account",
+        font=("Segoe UI", 11),
+        bg="#0f4c81",
+        fg="#dbeafe"
+    ).pack()
+
+    # ================= CARD =================
+    card = tk.Frame(
+        root,
+        bg="white",
+        bd=1,
+        relief="solid",
+        padx=40,
+        pady=35
+    )
+    card.pack(pady=50)
+
+    tk.Label(
+        card,
+        text="Delete Admin Account",
+        font=("Segoe UI", 20, "bold"),
+        bg="white",
+        fg="#0f4c81"
+    ).pack(pady=(0, 25))
+
+    # -------- Admin ID --------
+    tk.Label(
+        card,
+        text="Administrator ID",
+        font=("Segoe UI", 11, "bold"),
+        bg="white",
+        fg="#374151",
+        anchor="w"
+    ).pack(fill="x")
+
+    entry_id = tk.Entry(
+        card,
+        width=35,
+        font=("Segoe UI", 11)
+    )
+    entry_id.pack(ipady=5, pady=(5, 20))
+
+    # -------- Message --------
+    messageLabel = tk.Label(
+        card,
+        text="",
+        font=("Segoe UI", 10, "bold"),
+        bg="white",
+        fg="red"
+    )
+    messageLabel.pack(pady=(0, 15))
+
+    # -------- Delete Button --------
+    tk.Button(
+        card,
+        text="Delete Account",
+        font=("Segoe UI", 11, "bold"),
+        bg="#dc2626",
+        fg="white",
+        activebackground="#b91c1c",
+        activeforeground="white",
+        bd=0,
+        width=24,
+        height=2,
+        cursor="hand2",
+        command=lambda: delete_admin_account(
+            messageLabel,
+            entry_id.get()
+        )
+    ).pack()
+
+    # ================= FOOTER =================
     tk.Label(
         root,
-        text="Enter Admin Id no: ",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack(pady=(40, 0))
-    entry_id=tk.Entry(root, width=30)
-    entry_id.pack(pady=(5,20))
-
-    # creating message
-    messageLabel=tk.Label(
-                    root,
-                    font=("Arial", 15, "bold"),
-                    bg="lightblue",
-                    fg="black"
-                )
-
-    # Button: Delete Account
-    tk.Button(
-        root,
-        text="Delete Account",
-        command= lambda:delete_admin_account(messageLabel, entry_id.get())
-    ).pack(pady=10)
-
-    messageLabel.pack(pady=10)
-
-# deleteAdmin(root)
-# root.mainloop()
+        text="Officer Access • BMS Banking System",
+        bg="#edf2f7",
+        fg="gray45",
+        font=("Segoe UI", 10)
+    ).pack(side="bottom", pady=20)

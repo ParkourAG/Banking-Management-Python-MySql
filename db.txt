@@ -1,9 +1,6 @@
 /////////// Create Bank Database ///////////
 create database bank_database;
 
-
-
-
 /////////// Account Details Database ///////////
 CREATE TABLE accounts_details (
     id INT AUTO_INCREMENT PRIMARY KEY,

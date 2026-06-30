@@ -142,7 +142,3 @@ def checkAdminPassword(db, admin_id, password):
          return True
     else:
          return False
-
-
-# print(isBlocked(db, 2))
-# db.close()

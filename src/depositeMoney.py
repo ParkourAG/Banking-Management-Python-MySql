@@ -2,12 +2,6 @@ import tkinter as tk
 from db_config import db_connect
 from db_operations import isExist
 
-# root= tk.Tk()
-# root.title("BMS Bank")
-# root.geometry("700x800")
-# root.configure(bg="lightblue")
-# root.resizable(False,False)
-
 def transaction_credit_update(messageLabel, acc_id, ammount):
     db=db_connect()
 
@@ -38,53 +32,116 @@ def transaction_credit_update(messageLabel, acc_id, ammount):
         messageLabel.config(text="Wrong Account Id.")
 
 def depositeMoney(root):
+    root.configure(bg="#edf2f7")
 
-    # heading
+    # ================= HEADER =================
+    header = tk.Frame(root, bg="#0f4c81", height=100)
+    header.pack(fill="x")
+
     tk.Label(
-        root,
-        text="Deposite Money:",
-        font=("Arial", 30, "bold"),
-        bg="lightblue",
+        header,
+        text="BMS BANK",
+        font=("Segoe UI", 26, "bold"),
+        bg="#0f4c81",
         fg="white"
-    ).pack(pady=40)
+    ).pack(pady=(18, 0))
 
-    # Enter Account Id
     tk.Label(
-        root,
-        text="Enter Account Number: ",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack(pady=(40, 0))
-    acc_entry=tk.Entry(root, width=30)
-    acc_entry.pack(pady=(5,20))
+        header,
+        text="Deposit Money",
+        font=("Segoe UI", 11),
+        bg="#0f4c81",
+        fg="#dbeafe"
+    ).pack()
 
-    # Enter Ammount
+    # ================= CARD =================
+    card = tk.Frame(
+        root,
+        bg="white",
+        bd=1,
+        relief="solid",
+        padx=40,
+        pady=35
+    )
+    card.pack(pady=50)
+
     tk.Label(
-        root,
-        text="Enter Ammount: ",
-        bg="lightblue",
-        font=("Arial", 12)
-    ).pack(pady=(5, 0))
-    money=tk.Entry(root, width=30)
-    money.pack(pady=(5,10))
+        card,
+        text="Deposit Money",
+        font=("Segoe UI", 20, "bold"),
+        bg="white",
+        fg="#0f4c81"
+    ).pack(pady=(0, 25))
 
-    # show message
-    messageLabel=tk.Label(
-            root,
-            font=("Arial", 15, "bold"),
-            bg="lightblue",
-            fg="black"
-        )
+    # -------- Account Number --------
+    tk.Label(
+        card,
+        text="Account Number",
+        font=("Segoe UI", 11, "bold"),
+        bg="white",
+        fg="#374151",
+        anchor="w"
+    ).pack(fill="x")
 
-    # button: Deposite money
+    acc_entry = tk.Entry(
+        card,
+        width=35,
+        font=("Segoe UI", 11)
+    )
+    acc_entry.pack(ipady=5, pady=(5, 15))
+
+    # -------- Amount --------
+    tk.Label(
+        card,
+        text="Deposit Amount",
+        font=("Segoe UI", 11, "bold"),
+        bg="white",
+        fg="#374151",
+        anchor="w"
+    ).pack(fill="x")
+
+    money = tk.Entry(
+        card,
+        width=35,
+        font=("Segoe UI", 11)
+    )
+    money.pack(ipady=5, pady=(5, 20))
+
+    # -------- Message --------
+    messageLabel = tk.Label(
+        card,
+        text="",
+        font=("Segoe UI", 10, "bold"),
+        bg="white",
+        fg="red"
+    )
+    messageLabel.pack(pady=(0, 15))
+
+    # -------- Deposit Button --------
     tk.Button(
+        card,
+        text="Deposit Money",
+        font=("Segoe UI", 11, "bold"),
+        bg="#16a34a",
+        fg="white",
+        activebackground="#15803d",
+        activeforeground="white",
+        bd=0,
+        width=24,
+        height=2,
+        cursor="hand2",
+        command=lambda: transaction_credit_update(
+            messageLabel,
+            acc_entry.get(),
+            money.get()
+        )
+    ).pack()
+
+    # ================= FOOTER =================
+    tk.Label(
         root,
-        text="Deposite Money",
-        command=lambda:transaction_credit_update(messageLabel, acc_entry.get(), money.get())
-    ).pack(pady=10)
-
-    messageLabel.pack(pady=10)
-
-
-# depositeMoney(root)
-# root.mainloop()
+        text="Secure Banking • BMS Banking System",
+        bg="#edf2f7",
+        fg="gray45",
+        font=("Segoe UI", 10)
+    ).pack(side="bottom", pady=20)
